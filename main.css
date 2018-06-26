@@ -1,0 +1,75 @@
+/*
+Style guide: http://rscss.io/components.html
+*/
+
+* {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 300;
+}
+
+body {
+    background: #7F7FD5;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to top,
+        rgb(177, 205, 255),
+        rgb(5, 7, 139) 60%,
+        rgb(1, 2, 44) 95%
+    );  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to top,
+        rgb(177, 205, 255),
+        rgb(5, 7, 139) 60%,
+        rgb(1, 2, 44) 95%
+    );  /* Chrome 10-25, Safari 5.1-6 */
+}
+
+#name-block {
+    height: 100vh;
+    color: white;
+}
+
+.my-interests {
+    margin-top: 1em;
+    font-size: 1.5em;
+}
+
+#ilike-text {
+    font-weight: 400;
+}
+
+#interest-text {
+    /* underline */
+    border-bottom: 1px;
+    border-bottom-style: solid;
+    border-color: white;
+}
+
+.my-name {
+    padding-top: 5em;
+    font-weight: 300;
+    font-size: 4em;
+    letter-spacing: 4px;
+}
+
+
+.menu-icon {
+    color: lightgray;
+    margin-bottom: 0.25em;
+}
+
+.menu-icon:hover {
+    color: white;
+    cursor: pointer;
+    transition: all 0.75s ease;
+}
+
+#link-menu {
+    margin-top: 3em;
+}
+
+#link-menu p {
+    margin-top: 0.5em;
+}
+
+#d3-card {
+    margin-top: 5em;
+    text-align: left;
+}

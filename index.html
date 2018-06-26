@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Eric Chang</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
+  <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <!-- TODO: Copy only the hover animations needed. -->
+  <link rel="stylesheet" type="text/css" media="screen" href="assets/hover.css" />
+
+  <link rel="stylesheet" type="text/css" media="screen" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.2/semantic.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.2/semantic.min.js"></script>
+
+  <!-- animations and d3 -->
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="assets/anime.min.js"></script>
+  <script src="assets/typed.min.js"></script>
+
+  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+  <script src="nightSky.js"></script>
+  <script src="main.js"></script>
+</head>
+<body>
+
+  <div id="name-block" class="ui center aligned fluid container">
+    <h1 class="my-name ml3">Eric Chang</h1>
+    <h2 class="interests">
+      <span id="ilike-text">I like</span>
+      <span id="interest-text"></span>
+    </h2>
+
+    <!-- Get the spacing by using a centered grid and leaving n columns empty -->
+    <div id="link-menu" class="ui stackable grid">
+      <div class="eight column centered row">
+        <div class="column">
+          <div class="ui center aligned fluid container">
+            <span class="hvr-icon-grow menu-icon">
+              <i class="big hvr-icon github icon"></i>
+              <p>GitHub</p>
+            </span>
+          </div>
+        </div>
+        <div class="column">
+          <div class="ui center aligned fluid container">
+            <span class="hvr-icon-grow menu-icon">
+              <i class="big hvr-icon file alternate icon"></i>
+              <p>Experience</p>
+            </span>
+          </div>
+        </div>
+        <div class="column">
+          <div class="ui center aligned fluid container">
+            <span class="hvr-icon-grow menu-icon">
+              <i class="big hvr-icon user icon"></i>
+              <p>About</p>
+            </span>
+          </div>
+        </div>
+        <div class="column">
+          <div class="ui center aligned fluid container">
+            <span class="hvr-icon-grow menu-icon">
+              <i class="big hvr-icon rss square icon"></i>
+              <p>Blog</p>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="ui centered grid">
+      <div class="nine wide column">
+        <div id="d3-card" class="ui fluid card">
+          <div class="content">
+            <div class="header">
+              Anscombe's Quartet
+            </div>
+            <div class="description">
+              <p>Four very different datasets with identical characteristics. A perfect demonstration of the danger of summary statistics.</p>
+            </div>
+          </div>
+          <div class="content">
+            <div class="ui centered grid">
+                <div class="eleven wide column">
+                  <div id="d3-demo"></div>
+                </div>
+                <div class="five wide column">
+                  <div class="container">
+                    <table class="ui padded celled table">
+                      <thead>
+                        <tr class="center aligned">
+                          <th>Statistic</th>
+                          <th>Value</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+
+                      </tbody>
+                    </table>
+                  </div>
+              </div>
+            </div>
+          </div>
+          <div class="extra content">
+              <div class="meta right floated">Built with d3.js.</div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+  </div>
+
+  <!-- <div id="demo-block" class="ui center aligned container">
+
+  </div> -->
+
+</body>
+
+</html>
