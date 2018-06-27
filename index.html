@@ -8,71 +8,75 @@
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
   <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
   <!-- Semantic UI -->
   <link rel="stylesheet" type="text/css" media="screen" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.2/semantic.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.2/semantic.min.js"></script>
-  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+
+  <link rel="stylesheet" type="text/css" media="screen" href="styles/main.css" />
 </head>
 <body>
 
-  <div id="name-block" class="ui center aligned fluid container">
-    <h1 class="my-name ml3">ERIC CHANG</h1>
-    <h2 class="interests">
-      <span id="ilike-text">I like</span>
-      <span id="interest-text"></span>
-    </h2>
+  <main>
+    <div class="ui center aligned fluid container">
+      <h1 id="my-name" class="ml3" style="max-width: 100%">ERIC CHANG</h1>
+      <h2 class="interests">
+        <span id="ilike-text">I like</span>
+        <span id="interest-text"></span>
+      </h2>
 
-    <!-- Get the spacing by using a centered grid and leaving n columns empty -->
-    <div id="link-menu" class="ui stackable grid">
-      <div class="eight column centered row">
-        <div class="column">
-          <div class="ui center aligned fluid container">
-            <a class="hvr-icon-grow menu-icon" href="https://github.com/chang" target="_blank">
-              <i class="big hvr-icon github icon"></i>
-              <p>GitHub</p>
-            </a>
+      <!-- Get the spacing by using a centered grid and leaving n columns empty -->
+      <!-- TODO: Do this properly using flexbox. Grid isn't necessary. -->
+      <div id="link-menu" class="ui equal width stackable grid">
+        <div class="eight column centered row">
+          <div class="column">
+            <div class="ui center aligned fluid container">
+              <a class="hvr-icon-grow menu-icon" href="https://github.com/chang" target="_blank">
+                <i class="big hvr-icon github icon"></i>
+                <p>GitHub</p>
+              </a>
+            </div>
           </div>
-        </div>
-        <div class="column">
-          <div class="ui center aligned fluid container">
-            <a class="hvr-icon-grow menu-icon" href="assets/EricChang_Resume.pdf" target="_blank">
-              <i class="big hvr-icon file alternate icon"></i>
-              <p>Experience</p>
-            </a>
+          <div class="column">
+            <div class="ui center aligned fluid container">
+              <a class="hvr-icon-grow menu-icon" href="assets/EricChang_Resume.pdf" target="_blank">
+                <i class="big hvr-icon file alternate icon"></i>
+                <p>Experience</p>
+              </a>
+            </div>
           </div>
-        </div>
-        <div class="column">
-          <div class="ui center aligned fluid container">
-            <span class="hvr-icon-grow menu-icon">
-              <i class="big hvr-icon user icon"></i>
-              <p>About</p>
-            </span>
+          <div class="column">
+            <div class="ui center aligned fluid container">
+              <span class="hvr-icon-grow menu-icon">
+                <i class="big hvr-icon user icon"></i>
+                <p>About</p>
+              </span>
+            </div>
           </div>
-        </div>
-        <!-- <div class="column">
-          <div class="ui center aligned fluid container">
-            <span class="hvr-icon-grow menu-icon">
-              <i class="big hvr-icon rss square icon"></i>
-              <p>Blog</p>
-            </span>
-          </div> -->
+          <!-- <div class="column">
+            <div class="ui center aligned fluid container">
+              <span class="hvr-icon-grow menu-icon">
+                <i class="big hvr-icon rss square icon"></i>
+                <p>Blog</p>
+              </span>
+            </div> -->
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- <div class="ui centered grid">
-      <div class="nine wide column">
-        <div id="d3-card" class="ui fluid card">
-          <div class="content">
-            <div class="header">
-              Anscombe's Quartet
+      <!-- <div class="ui centered grid">
+        <div class="nine wide column">
+          <div id="d3-card" class="ui fluid card">
+            <div class="content">
+              <div class="header">
+                Anscombe's Quartet
+              </div>
+              <div class="description">
+                <p>A demonstration of the danger of summary statistics.</p>
+              </div>
             </div>
-            <div class="description">
-              <p>Four very different datasets with identical characteristics. A perfect demonstration of the danger of summary statistics.</p>
-            </div>
-          </div>
-          <div class="content">
-            <div class="ui centered grid">
+            <div class="content">
+              <div class="ui centered grid">
                 <div class="eleven wide column">
                   <div id="d3-demo"></div>
                 </div>
@@ -90,32 +94,31 @@
                       </tbody>
                     </table>
                   </div>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="extra content">
+            <div class="extra content">
               <div class="meta right floated">Built with d3.js.</div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </div> -->
-
-  <!-- <div id="demo-block" class="ui center aligned container">
-
-  </div> -->
+    </div> -->
+    <!-- <div id="demo-block" class="ui center aligned container">
+    </div> -->
+  </main>
   <footer>
     Made with
-    <a href="https://d3js.org/"> d3.js</a>
+    <a href="https://d3js.org/" target="_blank"> d3.js</a>
     and animated with
-    <a href="https://animejs.com/">anime.js</a>
+    <a href="https://animejs.com/" target="_blank">anime.js</a>
   </footer>
 
   <script src="https://d3js.org/d3.v5.min.js"></script>
   <script src="assets/anime.min.js"></script>
   <script src="assets/typed.min.js"></script>
-  <script src="nightSky.js"></script>
-  <script src="main.js"></script>
+  <script src="scripts/nightSky.js"></script>
+  <script src="scripts/main.js"></script>
 </body>
 
 </html>

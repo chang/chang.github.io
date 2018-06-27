@@ -1,5 +1,6 @@
 # ericchang.me
 
-- [Tachyons](http://tachyons.io/docs/)
-- [animateplus](https://github.com/bendc/animateplus)
+- [d3](https://d3js.org/)
+- [anime](http://animejs.com/)
+- [Semantic UI](https://semantic-ui.com/)
 - [hover.css](http://ianlunn.github.io/Hover/)

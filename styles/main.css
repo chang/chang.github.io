@@ -3,55 +3,95 @@ Style guide: http://rscss.io/components.html
 */
 
 * {
+    --moon-color: #fff684;
+    --foreground-building-color: #0c0c0c;
+    --background-building-color: black;
+
     font-family: "Open Sans", sans-serif;
     font-weight: 300;
 }
 
+/* mobile portrait */
+@media screen and (min-width:320px) {
+    body {
+        font-size: 10px;
+    }
+}
+
+/* mobile landscape */
+@media screen and (min-width:480px) {
+    body {
+        font-size: 12px;
+    }
+}
+
+/* ipad portrait */
+@media screen and (min-width:768px) {
+    body {
+        font-size: 14px;
+    }
+}
+
+/* browser, ipad landscape */
+@media screen and (min-width:1024px) {
+    body {
+        font-size: 14px;
+    }
+}
+
+/* browser */
+@media screen and (min-width:1200px) {
+    body {
+        font-size: 15px;
+    }
+}
+
+/* browser */
+@media screen and (min-width:1600px) {
+    body {
+        font-size: 16px;
+    }
+}
+
 body {
-    --moon-color: #fff684;
+    min-height: 600px;
+    color: white;
 
     background: #7F7FD5;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to top,
-        rgb(0, 3, 160) 10%,
-        rgb(5, 7, 139) 20%,
-        rgb(1, 2, 44) 80%
+    rgb(0, 3, 160) 10%,
+    rgb(5, 7, 139) 20%,
+    rgb(1, 2, 44) 80%
     );  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to top,
-        rgb(0, 3, 160) 10%,
-        rgb(5, 7, 139) 20%,
-        rgb(1, 2, 44) 80%
+    rgb(0, 3, 160) 10%,
+    rgb(5, 7, 139) 20%,
+    rgb(1, 2, 44) 80%
     );  /* Chrome 10-25, Safari 5.1-6 */
+
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
-.my-name {
-    padding-top: 30%;
+main {
+    height: 100%;
+}
+
+#my-name {
+    padding-top: 30vh;
     font-weight: 300;
     font-size: 4em;
     letter-spacing: 0.2em;
 }
 
-
-#name-block {
-    height: 100%;
-    color: white;
-}
-
-.my-interests {
-    margin-top: 1em;
+.interests {
+    margin-top: 1.5em;
     font-size: 1.5em;
 }
 
 #ilike-text {
     font-weight: 400;
 }
-
-#interest-text {
-    /* underline */
-    /* border-bottom: 1px;
-    border-bottom-style: solid;
-    border-color: white; */
-}
-
 
 .menu-icon {
     color: lightgray;
@@ -72,14 +112,9 @@ body {
     margin-top: 0.5em;
 }
 
-#d3-card {
-    margin-top: 5em;
-    text-align: left;
-}
-
 footer {
     color: lightgray;
-    background-color: rgb(0, 3, 160);
+    background-color: black;
     font-size: 0.8em;
     text-align: right;
     padding-right: 0.25em;
