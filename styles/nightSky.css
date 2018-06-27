@@ -1,0 +1,16 @@
+@keyframes twinkle {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* .twinkling {
+    animation-name: twinkle;
+    animation-duration: 3s;
+    animation-delay: 3s;
+    animation-iteration-count: infinite;
+} */

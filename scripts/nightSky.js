@@ -1,5 +1,16 @@
 "use strict";
 
+
+/**
+ * My guess is that CSS > D3 > AnimeJS for animation performance.
+ * Setting a less-efficient flag is for performance testing, otherwise it defaults
+ * to the most efficient method.
+ */
+const animateWithAnimeJS = false;
+const animateWithD3 = false;
+const animateWithCSS = true;
+
+
 // should I add the SVG here or put it straight in the HTML?
 function getSkyCanvas() {
   const canvasID = "sky-canvas";
@@ -65,26 +76,56 @@ function addTwinklingStars() {
       .attr("id", (d) => d.id)
       .attr("r", (d) => d.r)
       .attr("cx", (d) => d.x)
-      .attr("cy", (d) => d.y);
+      .attr("cy", (d) => d.y)
+      // .style("will-change", "opacity")
 
-  for (let star of stars) {
-    anime({
-      loop: true,
-      targets: `#${star.id}`,
-      easing: "linear",
-      r: [star.r, Math.random()],
-      opacity: [1, 0],
-      duration: 500 + Math.random() * 1000,
-      delay: Math.random() * 1000,
-      direction: "alternate",
-    })
+  if (animateWithD3) {
+    function blink() {
+      $skyCanvas
+        .selectAll("circle")
+        .transition()
+          .delay(Math.random() * 1000)
+          .ease(d3.easeLinear)
+          .duration(() => 500 + Math.random() * 1000)
+            .attr("opacity", 1)
+        .transition()
+          .ease(d3.easeLinear)
+          .duration(() => 500 + Math.random() * 1000)
+            .attr("opacity", 0)
+        .on("end", blink)
+    }
+    blink();
+  } else if (animateWithAnimeJS) {
+    for (let star of stars) {
+      anime({
+        loop: true,
+        targets: `#${star.id}`,
+        translateZ: 0,
+        easing: "linear",
+        // r: [star.r, Math.random()],
+        opacity: [1, 0],
+        duration: 500 + Math.random() * 1000,
+        delay: Math.random() * 1000,
+        direction: "alternate",
+      })
+    }
+  } else if (animateWithCSS) {
+    $skyCanvas
+      .selectAll(".svg-star")
+      .attr("opacity", 0)
+      .attr("style", function() {
+        const duration = randomUniform(0.5, 2);
+        const delay = randomUniform(0.5, 1.5);
+        // TODO: Use the actual style method. Not sure why it's not working here.
+        return `animation: twinkle ${duration}s linear ${delay}s infinite alternate; will-change: opacity;`
+      })
   }
 }
 
 
 // TODO: Add trails to the shooting stars: https://codepen.io/juliangarnier/pen/gmOwJX?editors=0010
 function addShootingStars() {
-  const numShootingStars = 15;
+  const numShootingStars = 10;
   const shootingStarColors = ["white", "gold", "red", "skyblue"];
 
   for (let i = 0; i < numShootingStars; i++) {
@@ -94,22 +135,18 @@ function addShootingStars() {
     const changeY = randomUniform(canvasHeight * 0.2, canvasHeight * 0.8);
 
     $skyCanvas
-      .append("path")
-        .attr("id", `shooting-star-path-${i}`)
-        .attr("d", `M ${startX} ${startY} l ${changeX} ${changeY}`)
-        // .attr("stroke", "pink")
-
-    $skyCanvas
       .append("circle")
         .attr("id", `shooting-star-circle-${i}`)
         .attr("fill", randomChoice(shootingStarColors))
         .attr("opacity", 0)
+        .style("will-change", "transform, opacity")
+        // .attr("r", 2);
 
-    var path = anime.path(`#shooting-star-path-${i}`);
     anime({
       targets: `#shooting-star-circle-${i}`,
-      translateX: path("x"),
-      translateY: path("y"),
+      translateX: [startX, startX + changeX],
+      translateY: [startY, startY + changeY],
+      translateZ: 0,
       opacity: [0, 1, 0],
       r: [0, randomUniform(0.5, 2), 0],
       easing: "easeOutCubic",
@@ -197,8 +234,8 @@ function addCitySkyline() {
 
   function addCircularWindowsToSVGBuilding({ x, y, height, width }) {
     // evenly spaced circular "lights", defined by the number of rows and columns
-    const nCols = 5;
-    const nRows = 10;
+    const nCols = 8;
+    const nRows = 14;
     const borderPadding = 10;  // in pixels
 
     const xPercent = parseFloat(x) / 100;
@@ -221,8 +258,6 @@ function addCitySkyline() {
       y - borderPadding + height,
       nRows,
     );
-
-    console.log(xPositions);
 
     let windowPositions = [];
     for (let xp of xPositions) {
@@ -261,17 +296,17 @@ function addCitySkyline() {
         .duration(1000)
           .style("opacity", 1);
 
-    for (let i = 0; i < windowPositions.length; i++) {
-      anime({
-        targets: `#building-window-${i}`,
-        opacity: [1, 0],
-        directin: "alternate",
-        duration: 100,
-        delay: randomUniform(1000 * 5, 1000 * 10),
-        easing: "linear",
-        loop: true,
-      });
-    }
+    // for (let i = 0; i < windowPositions.length; i++) {
+    //   anime({
+    //     targets: `#building-window-${i}`,
+    //     opacity: [1, 0],
+    //     directin: "alternate",
+    //     duration: 100,
+    //     delay: randomUniform(1000 * 5, 1000 * 10),
+    //     easing: "linear",
+    //     loop: true,
+    //   });
+    // }
   }
 
   const buildings = makeBuildings(15).map((b) => buildingToSVGCoord(b));
@@ -292,22 +327,14 @@ function addCitySkyline() {
         }
         return "var(--foreground-building-color)";
       })
-      /// .attr("stroke", "gray")
+      // .attr("stroke", "gray")
       .attr("x", (d) => d.x)
       .attr("y", canvasHeight)  // prep for rising transition
       .attr("height", (d) => d.height)
       .attr("width", (d) => d.width);
 
   // add windows
-  /// addCircularWindowsToSVGBuilding(buildings[0]);
-
-  $body
-    .append("i")
-    .attr("id", "moon2")
-    .attr("class", "fitted small moon icon")
-    .style("color", "var(--moon-color)")
-    .style("position", "fixed")
-    .style("text-shadow", "var(--moon-color) 0 0 20px, var(--moon-color) 0 0 20px")
+  // addCircularWindowsToSVGBuilding(buildings[0]);
 
   // SVG coord system - modifying y-coord instead of height to get the buildings to "rise"
   $skyCanvas
