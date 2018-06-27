@@ -1,24 +1,5 @@
 "use strict";
 
-function nextInterestHelper(interests, interval) {
-    var n = 0;
-    function swapInterestText(i) {
-        n += 1;
-        var interest = interests[n % interests.length];
-        var elem = $("#interest-text");
-        elem.fadeOut(interval / 2, function() {
-            elem.html(interest);
-            elem.fadeIn(interval / 2);
-        });
-    }
-    return swapInterestText;
-}
-
-function setInterestChange(interests, interval) {
-    var nextInterest = nextInterestHelper(interests, interval);
-    setInterval(nextInterest, interval);
-}
-
 function fadeAllElementsIn() {
     // Wrap every letter in a span
     $('.ml3').each(function(){
@@ -36,7 +17,7 @@ function fadeAllElementsIn() {
     }
 
     const menuFade = {
-        targets: ".my-interests, #link-menu",
+        targets: ".my-interests, #link-menu, .interests",
         easing: "linear",
         opacity: [0, 1],
         duration: 1000,
@@ -256,7 +237,7 @@ $(document).ready(function() {
     // demo.updatePlot();
     // demo.populateStatisticsTable()
     var typed = new Typed('#interest-text', {
-        strings: ["data science.", "software engineering.", "open source."],
+        strings: ["data science.", "software engineering.", "open source.", "3D Printing."],
         typeSpeed: 65,
         backSpeed: 65,
         backDelay: 3000,

@@ -1,8 +1,6 @@
 "use strict";
 
 
-const NUM_STARS = 100;
-
 
 function getSkyCanvas() {
     const idSelector = "sky-canvas";
@@ -23,11 +21,8 @@ function getSkyCanvas() {
 
 
 function addTwinklingStars() {
-    const windowHeight = $("#name-block").height();
-    const maxHeight = windowHeight * 0.6;
-
     // Return an array of x, y coordinates representing star positions.
-    function makeStars(numStars) {
+    function makeStars(numStars, maxHeight) {
         let stars = [];
         for (let i = 0; i < numStars; i++) {
             let s = {
@@ -41,8 +36,11 @@ function addTwinklingStars() {
         return stars;
     }
 
+    const windowHeight = $("#name-block").height();
+    const generalStars = makeStars(100, windowHeight * 0.9);
+    const topStars = makeStars(40, windowHeight * 0.3);
+    const stars = generalStars.concat(topStars);
     const canvas = getSkyCanvas();
-    const stars = makeStars(NUM_STARS);
 
     canvas
         .selectAll("circle")
@@ -102,22 +100,26 @@ function addShootingStars() {
 }
 
 function addRisingMoon() {
-    getSkyCanvas()
-        .append("circle")
-        .attr("fill", "#fff6d3")
-        .attr("class", "svg-moon")
-        .attr("r", 10)
-        .attr("cx", "80%")
-        .attr("cy", "10%")
+    d3.select("body")
+        .append("i")
+        .attr("id", "moon")
+        .attr("class", "fitted small moon icon")
+        .style("color", "#fff684")
+        .style("position", "absolute")
+        .style("top", "10%")
+        .style("right", "17%")
+        .style("text-shadow", "#fff684 0 0 20px, #fff684 0 0 20px")
 
-    anime({
-        targets: ".svg-moon",
-        translateY: ["+20px", "-20px"],
-        opacity: [0, 1],
-        duration: 1500,
-        easing: "easeOutQuad",
-        delay: 1000,
-    })
+    anime.timeline()
+        .add({
+            targets: "#moon",
+            translateY: ["+20px", "-20px"],
+            opacity: [0, 1],
+            rotate: "-140deg",
+            duration: 1500,
+            easing: "easeOutQuad",
+            delay: 1000,
+        })
 }
 
 
