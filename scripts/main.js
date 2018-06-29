@@ -45,13 +45,27 @@ function addTypingInterestText(interests) {
 
 $(document).ready(function() {
   fadeAllElementsIn();
-
-  const interests = [
+  addTypingInterestText([
     "data science.",
     "software engineering.",
     "open source.",
     "3D Printing."
-  ];
+  ]);
 
-  addTypingInterestText(interests);
+  const sky = new NightSky({
+    numStars: 200,
+    numShootingStars: 10,
+    shootingStarColors: ["white", "gold", "red", "skyblue", "orange"],
+  });
+
+  const skyline = new CitySkyline({
+    numBuildings: 10,
+    minHeightScale: 0.2,
+    maxHeightScale: 0.7,
+    minWidthScale: 0.02,
+    maxWidthScale: 0.1,
+  });
+
+  sky.render();
+  skyline.render();
 });

@@ -16,6 +16,11 @@ Style guide: http://rscss.io/components.html
     body {
         font-size: 10px;
     }
+
+    #my-name {
+        padding-top: 3.5em;
+        font-size: 3em;
+    }
 }
 
 /* mobile landscape */
@@ -29,6 +34,10 @@ Style guide: http://rscss.io/components.html
 @media screen and (min-width:768px) {
     body {
         font-size: 14px;
+    }
+    #my-name {
+        font-size: 4em;
+        padding-top: 4em;
     }
 }
 
@@ -54,7 +63,7 @@ Style guide: http://rscss.io/components.html
 }
 
 body {
-    min-height: 600px;
+    min-height: 500px;
     color: white;
 
     background: #7F7FD5;  /* fallback for old browsers */
@@ -78,9 +87,7 @@ main {
 }
 
 #my-name {
-    padding-top: 30vh;
     font-weight: 300;
-    font-size: 4em;
     letter-spacing: 0.2em;
 }
 
