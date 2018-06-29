@@ -5,6 +5,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Eric Chang</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- hide the flash of unstyled content -->
+  <style type="text/css"> body { display: none; } </style>
+
+  <!-- resources -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
   <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -13,18 +18,32 @@
   <link rel="stylesheet" type="text/css" media="screen" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.2/semantic.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.2/semantic.min.js"></script>
 
-  <link rel="stylesheet" type="text/css" media="screen" href="styles/main.css" />
   <link rel="stylesheet" type="text/css" media="screen" href="styles/nightSky.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="styles/main.css" />
+
+  <!-- Not loading at the end of body due to latency -->
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.7.1/pixi.min.js"></script> -->
+  <script src="assets/anime.min.js"></script>
+  <script src="assets/typed.min.js"></script>
+  <script src="scripts/utils.js"></script>
+  <script src="scripts/nightSky.js"></script>
+  <script src="scripts/citySkyline.js"></script>
+
+  <script type="text/javascript"> $(document).ready(function() { $("body").css("display", "block"); }) </script>
+  <script src="scripts/main.js"></script>
 </head>
 <body>
 
   <main>
     <div class="ui center aligned fluid container">
-      <h1 id="my-name" class="ml3" style="max-width: 100%">ERIC CHANG</h1>
-      <h2 class="interests">
-        <span id="ilike-text">I like</span>
-        <span id="interest-text" style="will-change: contents;"></span>
-      </h2>
+      <div id="main-text">
+        <p id="my-name" class="ml3" style="max-width: 100%">ERIC CHANG</p>
+        <p class="interests">
+          <span id="ilike-text">I like</span>
+          <span id="interest-text" style="will-change: contents;"></span>
+        </p>
+      </div>
 
       <!-- Get the spacing by using a centered grid and leaving n columns empty -->
       <!-- TODO: Do this properly using flexbox. Grid isn't necessary. -->
@@ -114,14 +133,6 @@
     and
     <a href="https://animejs.com/" target="_blank">anime.js</a>
   </footer>
-
-  <script src="https://d3js.org/d3.v5.min.js"></script>
-  <script src="assets/anime.min.js"></script>
-  <script src="assets/typed.min.js"></script>
-  <script src="scripts/utils.js"></script>
-  <script src="scripts/nightSky.js"></script>
-  <script src="scripts/citySkyline.js"></script>
-  <script src="scripts/main.js"></script>
 </body>
 
 </html>

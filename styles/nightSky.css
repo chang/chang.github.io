@@ -1,4 +1,4 @@
-@keyframes twinkle {
+@keyframes blink {
     from {
         opacity: 0;
     }
@@ -6,6 +6,15 @@
     to {
         opacity: 1;
     }
+}
+
+
+/* Use this as a performant flash animation. Duration is the "off" time, delay is the "on" time. */
+@keyframes flash {
+    0% { opacity: 1; }
+    1% { opacity: 0; }
+    99% { opacity: 0; }
+    100% { opacity: 1; }
 }
 
 /* .twinkling {

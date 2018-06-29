@@ -13,19 +13,14 @@ const animateWithCSS = true;
 
 class NightSky {
   constructor(opts) {
-    this.opts = {
-      numStars: 200,
-      numShootingStars: 10,
-      shootingStarColors: ["white", "gold"],
-      ...opts
-    };
+    this.opts = opts;
     this.canvas = this.setupCanvas();
   }
 
   render() {
-    this.addTwinklingStars();
-    this.addShootingStars();
-    this.addRisingMoon();
+    if (this.opts.stars) { this.addTwinklingStars(); }
+    if (this.opts.shootingStars) { this.addShootingStars(); }
+    if (this.opts.moon) { this.addRisingMoon(); }
   }
 
   setupCanvas() {
@@ -151,10 +146,10 @@ class NightSky {
         .selectAll(".svg-star")
         .attr("opacity", 0)
         .attr("style", function() {
-          const duration = randomUniform(0.5, 2);
-          const delay = randomUniform(0.5, 1.5);
+          const duration = randomUniform(1, 3);
+          const delay = randomUniform(1, 5);
           // TODO: Use the actual style method. Not sure why it's not working here.
-          return `animation: twinkle ${duration}s linear ${delay}s infinite alternate; will-change: opacity;`
+          return `animation: blink ${duration}s linear ${delay}s infinite alternate; will-change: opacity;`
         })
     }
   }
