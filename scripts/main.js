@@ -33,16 +33,17 @@ $(document).ready(function() {
   ]);
 
   const sky = new NightSky({
-    numStars: 200,
-    numShootingStars: 10,
+    numStars: 150,
+    numShootingStars: 20,
     shootingStarColors: ["white", "gold", "red", "skyblue", "orange"],
     stars: true,
     moon: true,
     shootingStars: false,
   });
+  sky.render();
 
   const skyline = new CitySkyline({
-    numBuildings: 20,
+    numBuildings: 15,
     minHeightScale: 0.2,
     maxHeightScale: 0.9,
     minWidthScale: 0.05,
@@ -53,10 +54,11 @@ $(document).ready(function() {
     windowPadding: 7,
     windowDistance: 4,
     windowOpacity: () => randomUniform(0.3, 1),
-    windowFilterFunction: function(windows) { return windows.filter(() => Math.random() < 0.25); },
+    windowFilterFunction: function(windows) { return windows.filter(() => Math.random() < 0.3); },
     windowOnStaggeringDelay: 100,
   });
 
-  sky.render();
   skyline.render();
+
+  // new PixiiTest();
 });

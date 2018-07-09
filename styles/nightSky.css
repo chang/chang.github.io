@@ -23,3 +23,14 @@
     animation-delay: 3s;
     animation-iteration-count: infinite;
 } */
+.svg-star {
+    will-change: opacity;
+    transform: translate3d(0,0,0);
+    -webkit-transform: translate3d(0,0,0);
+}
+
+.window {
+    will-change: opacity;
+    transform: translate3d(0,0,0);
+    -webkit-transform: translate3d(0,0,0);
+}

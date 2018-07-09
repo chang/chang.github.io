@@ -18,7 +18,6 @@ class CitySkyline {
     // this.addCommsTower();
     // this.addSpireToBuilding(buildings[0]);
 
-    // SVG coord system - modifying y-coord instead of height to get the buildings to "rise"
     this.canvas
       .selectAll(".building")
       .attr("transform", `translate(0 ${this.canvasHeight})`)
@@ -35,8 +34,8 @@ class CitySkyline {
 
   setupCanvas() {
     // construct a canvas and overlay on the bottom of the screen
-    this.canvasHeight = 0.35 * $("body").height();
-    this.canvasWidth =  0.8 * $("body").width();
+    this.canvasHeight = 0.3 * $("body").height();
+    this.canvasWidth =  0.6 * $("body").width();
     const canvasID = "skyline-canvas";
 
     d3.select("body")
@@ -96,7 +95,7 @@ class CitySkyline {
       x: randomUniform(0, this.canvasWidth * 0.6),
       width: 0.1 * this.canvasWidth,
       height: 0.9 * this.canvasHeight,
-      barSpacing: 10,
+      barSpacing: 20,
 
       stroke: "black",
       "stroke-width": 1.5,
@@ -325,6 +324,10 @@ class WindowGenerator {
         .attr("r", (d) => d.r)
         .attr("opacity", 0)
         .attr("style", () => {
+          if (this.opts.animateWindows == false) {
+            return;
+          }
+
           const r = Math.random();
           if (r < 0.06) {
             const duration = randomUniform(1, 3);
@@ -375,8 +378,12 @@ class WindowGenerator {
         .attr("y", (d) => d.y)
         .attr("width", (d) => d.width)
         .attr("height", (d) => d.height)
-        .attr("fill", () => randomChoice(["var(--moon-color)", "white", "gold"]))
+        .attr("fill", () => randomChoice(["var(--moon-color)", "white", "gold"] ))
         .attr("style", () => {
+          if (this.opts.animateWindows == false) {
+            return;
+          }
+
           if (Math.random() < 0.1) {
             const duration = randomUniform(3, 5);
             const delay = randomUniform(2, 5);

@@ -149,7 +149,7 @@ class NightSky {
           const duration = randomUniform(1, 3);
           const delay = randomUniform(1, 5);
           // TODO: Use the actual style method. Not sure why it's not working here.
-          return `animation: blink ${duration}s linear ${delay}s infinite alternate; will-change: opacity;`
+          return `animation: blink ${duration}s linear ${delay}s infinite alternate;`
         })
     }
   }

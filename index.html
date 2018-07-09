@@ -21,9 +21,7 @@
   <link rel="stylesheet" type="text/css" media="screen" href="styles/nightSky.css" />
   <link rel="stylesheet" type="text/css" media="screen" href="styles/main.css" />
 
-  <!-- Not loading at the end of body due to latency -->
   <script src="https://d3js.org/d3.v5.min.js"></script>
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.7.1/pixi.min.js"></script> -->
   <script src="assets/anime.min.js"></script>
   <script src="assets/typed.min.js"></script>
   <script src="scripts/utils.js"></script>
@@ -48,39 +46,37 @@
       <!-- Get the spacing by using a centered grid and leaving n columns empty -->
       <!-- TODO: Do this properly using flexbox. Grid isn't necessary. -->
       <div id="link-menu" class="ui equal width stackable grid">
-        <div class="eight column centered row">
-          <div class="column">
-            <div class="ui center aligned fluid container">
-              <a class="hvr-icon-grow menu-icon" href="https://github.com/chang" target="_blank">
-                <i class="big hvr-icon github icon"></i>
-                <p>GitHub</p>
-              </a>
-            </div>
+        <div class="column">
+          <div class="ui center aligned fluid container">
+            <a class="hvr-icon-grow menu-icon" href="https://github.com/chang" target="_blank">
+              <i class="big hvr-icon github icon"></i>
+              <p>GitHub</p>
+            </a>
           </div>
-          <div class="column">
-            <div class="ui center aligned fluid container">
-              <a class="hvr-icon-grow menu-icon" href="assets/EricChang_Resume.pdf" target="_blank">
-                <i class="big hvr-icon file alternate icon"></i>
-                <p>Experience</p>
-              </a>
-            </div>
+        </div>
+        <div class="column">
+          <div class="ui center aligned fluid container">
+            <a class="hvr-icon-grow menu-icon" href="assets/EricChang_Resume.pdf" target="_blank">
+              <i class="big hvr-icon file alternate icon"></i>
+              <p>Experience</p>
+            </a>
           </div>
-          <div class="column">
-            <div class="ui center aligned fluid container">
-              <span class="hvr-icon-grow menu-icon">
-                <i class="big hvr-icon user icon"></i>
-                <p>About</p>
-              </span>
-            </div>
+        </div>
+        <div class="column">
+          <div class="ui center aligned fluid container">
+            <span class="hvr-icon-grow menu-icon">
+              <i class="big hvr-icon user icon"></i>
+              <p>About</p>
+            </span>
           </div>
-          <!-- <div class="column">
-            <div class="ui center aligned fluid container">
-              <span class="hvr-icon-grow menu-icon">
-                <i class="big hvr-icon rss square icon"></i>
-                <p>Blog</p>
-              </span>
-            </div> -->
-          </div>
+        </div>
+        <!-- <div class="column">
+          <div class="ui center aligned fluid container">
+            <span class="hvr-icon-grow menu-icon">
+              <i class="big hvr-icon rss square icon"></i>
+              <p>Blog</p>
+            </span>
+          </div> -->
         </div>
       </div>
 
