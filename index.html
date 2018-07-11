@@ -6,129 +6,314 @@
   <title>Eric Chang</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- hide the flash of unstyled content -->
-  <style type="text/css"> body { display: none; } </style>
-
-  <!-- resources -->
+  <!-- assets -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Noticia+Text:700" rel="stylesheet">
   <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+  <link rel="stylesheet" href="assets/bulma-timeline.min.css">
 
-  <!-- Semantic UI -->
-  <link rel="stylesheet" type="text/css" media="screen" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.2/semantic.min.css" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.2/semantic.min.js"></script>
-
-  <link rel="stylesheet" type="text/css" media="screen" href="styles/nightSky.css" />
   <link rel="stylesheet" type="text/css" media="screen" href="styles/main.css" />
 
   <script src="https://d3js.org/d3.v5.min.js"></script>
-  <script src="assets/anime.min.js"></script>
+  <!-- <script src="assets/anime.min.js"></script> -->
   <script src="assets/typed.min.js"></script>
-  <script src="scripts/utils.js"></script>
-  <script src="scripts/nightSky.js"></script>
-  <script src="scripts/citySkyline.js"></script>
-
-  <script type="text/javascript"> $(document).ready(function() { $("body").css("display", "block"); }) </script>
   <script src="scripts/main.js"></script>
+
 </head>
 <body>
 
   <main>
-    <div class="ui center aligned fluid container">
-      <div id="main-text">
-        <p id="my-name" class="ml3" style="max-width: 100%">ERIC CHANG</p>
-        <p class="interests">
-          <span id="ilike-text">I like</span>
-          <span id="interest-text" style="will-change: contents;"></span>
-        </p>
-      </div>
+    <section class="hero is-light">
 
-      <!-- Get the spacing by using a centered grid and leaving n columns empty -->
-      <!-- TODO: Do this properly using flexbox. Grid isn't necessary. -->
-      <div id="link-menu" class="ui equal width stackable grid">
-        <div class="column">
-          <div class="ui center aligned fluid container">
-            <a class="hvr-icon-grow menu-icon" href="https://github.com/chang" target="_blank">
-              <i class="big hvr-icon github icon"></i>
-              <p>GitHub</p>
-            </a>
-          </div>
-        </div>
-        <div class="column">
-          <div class="ui center aligned fluid container">
-            <a class="hvr-icon-grow menu-icon" href="assets/EricChang_Resume.pdf" target="_blank">
-              <i class="big hvr-icon file alternate icon"></i>
-              <p>Experience</p>
-            </a>
-          </div>
-        </div>
-        <div class="column">
-          <div class="ui center aligned fluid container">
-            <span class="hvr-icon-grow menu-icon">
-              <i class="big hvr-icon user icon"></i>
-              <p>About</p>
-            </span>
-          </div>
-        </div>
-        <!-- <div class="column">
-          <div class="ui center aligned fluid container">
-            <span class="hvr-icon-grow menu-icon">
-              <i class="big hvr-icon rss square icon"></i>
-              <p>Blog</p>
-            </span>
-          </div> -->
-        </div>
-      </div>
 
-      <!-- <div class="ui centered grid">
-        <div class="nine wide column">
-          <div id="d3-card" class="ui fluid card">
-            <div class="content">
-              <div class="header">
-                Anscombe's Quartet
-              </div>
-              <div class="description">
-                <p>A demonstration of the danger of summary statistics.</p>
-              </div>
+      <div class="hero-head"></div>
+
+
+      <div class="hero-body">
+        <div class="columns">
+
+          <!-- name and interests -->
+          <div class="column is-5">
+            <div class="section">
+              <h1 class="title is-1">
+                Eric Chang
+              </h1>
+
+              <h4 id="interest-text" class="subtitle is-4 has-text-grey">
+                <span>I like</span> <span id="interests" class="has-text-weight-bold"></span>
+              </h4>
+
             </div>
-            <div class="content">
-              <div class="ui centered grid">
-                <div class="eleven wide column">
-                  <div id="d3-demo"></div>
-                </div>
-                <div class="five wide column">
-                  <div class="container">
-                    <table class="ui padded celled table">
-                      <thead>
-                        <tr class="center aligned">
-                          <th>Statistic</th>
-                          <th>Value</th>
-                        </tr>
-                      </thead>
-                      <tbody>
+          </div>
 
-                      </tbody>
-                    </table>
+          <!-- cool d3 thing -->
+          <div id="hero-d3" class="column">
+          </div>
+
+        </div>
+      </div>
+
+
+      <div class="hero-foot">
+        <nav class="tabs is-boxed">
+          <div class="container">
+            <ul>
+              <li id="about-tab" class="is-active">
+                <a>About</a>
+              </li>
+              <li id="experience-tab">
+                <a>Experience</a>
+              </li>
+              <li id="work-tab">
+                <a>Work</a>
+              </li>
+              <li id="contact-tab">
+                <a>Contact</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+
+    </section>
+
+    <!-- main content -->
+    <section class="section">
+      <div class="columns is-mobile is-centered">
+
+        <div class="column is-8">
+
+          <!-- About -->
+          <div id="about-content">
+            <div class="content">
+              <h2 class="has-text-info">Hi, I'm Eric.</h2>
+              <p class="is-size-5">
+                I'm a recent grad from <span class="northwestern has-text-weight-bold">Northwestern University</span>, where I studied Industrial Engineering.
+              </p>
+
+              <p class="is-size-5">
+                <span class="has-text-weight-semibold">This August,</span> I'll be joining
+                <a href="http://asana.com" class="asana has-text-weight-bold" target="_blank">@Asana</a>
+                as a <span class="has-text-weight-semibold">Data Scientist</span>, working on their data engineering and machine learning platform.
+              </p>
+
+              <p class="is-size-5">
+                <span class="has-text-weight-semibold has-text-info">I think free and open source software is the coolest thing ever.</span>
+                I've made some contributions to projects like scikit-learn and Boostnote, and I plan to continue contributing in the future.
+              </p>
+
+              <p class="is-size-5">
+                In my free time, I also enjoy calligraphy, viola, and computer aided design.
+              </p>
+            </div>
+          </div>
+
+          <!-- Experience -->
+          <div id="experience-content" class="hidden">
+
+
+            <div class="timeline">
+
+              <!-- Start tag -->
+              <header class="timeline-header">
+                <span class="tag is-info">
+                  2019
+                </span>
+              </header>
+
+
+              <!-- Asana -->
+              <div class="timeline-item is-info">
+                <div class="timeline-marker has-text-white is-icon"><i class="fas fa-briefcase"></i></div>
+                <div class="timeline-content">
+                  <p class="heading is-size-7">
+                    <span class="has-text-info">San Francisco, CA</span>
+                    <span class="has-text-weight-light has-text-grey-lighter">|</span>
+                    <span class="has-text-grey">Aug 2018 - ?</span>
+                  </p>
+                  <div class="card">
+                    <div class="card-content">
+                      <div class="media">
+                        <div class="media-left">
+                          <figure class="image is-48x48">
+                            <img src="assets/images/asana.png" alt="Placeholder image">
+                          </figure>
+                        </div>
+                        <div class="media-content">
+                          <p class="title is-6">Asana</p>
+                          <p class="subtitle is-6">Data Scientist</p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
+
+              <!-- Graduation -->
+              <div class="timeline-item is-info">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                  <p class="heading is-size-7">
+                    <span class="has-text-grey">Jun 2018</span>
+                    <h2>Graduated from <span class="northwestern">Northwestern</span>.</h2>
+                  </p>
+                </div>
+              </div>
+
+
+              <!-- 2018 -->
+              <header class="timeline-header">
+                <span class="tag is-info">2018</span>
+              </header>
+
+
+              <!-- Classy -->
+              <div class="timeline-item is-info">
+                <div class="timeline-marker has-text-white is-icon"><i class="fas fa-briefcase"></i></div>
+                <div class="timeline-content">
+                  <p class="heading is-size-7">
+                    <span class="has-text-info">San Diego, CA</span>
+                    <span class="has-text-weight-light has-text-grey-lighter">|</span>
+                    <span class="has-text-grey">Sep 2017 - Dec 2017</span>
+                  </p>
+                  <div class="card">
+                    <div class="card-content">
+                      <div class="media">
+                        <div class="media-left">
+                          <figure class="image is-48x48">
+                            <img src="assets/images/classy.png" alt="Placeholder image">
+                          </figure>
+                        </div>
+                        <div class="media-content">
+                          <p class="title is-6">Classy.org</p>
+                          <p class="subtitle is-6">Data Science Intern</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Groupon -->
+              <div class="timeline-item is-info">
+                <div class="timeline-marker has-text-white is-icon"><i class="fas fa-briefcase"></i></div>
+                <div class="timeline-content">
+                  <p class="heading is-size-7">
+                    <span class="has-text-info">Seattle, WA</span>
+                    <span class="has-text-weight-light has-text-grey-lighter">|</span>
+                    <span class="has-text-grey">Jun 2017 - Sep 2017</span>
+                  </p>
+                  <div class="card">
+                    <div class="card-content">
+                      <div class="media">
+                        <div class="media-left">
+                          <figure class="image is-48x48">
+                            <img src="assets/images/groupon.png" alt="Placeholder image">
+                          </figure>
+                        </div>
+                        <div class="media-content">
+                          <p class="title is-6">Groupon</p>
+                          <p class="subtitle is-6">Software Engineering Intern</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              <!-- 2017 -->
+              <header class="timeline-header">
+                <span class="tag is-info">2017</span>
+              </header>
+
+
+              <!-- Autodesk -->
+              <div class="timeline-item is-info">
+                <div class="timeline-marker has-text-white is-icon"><i class="fas fa-briefcase"></i></div>
+                <div class="timeline-content">
+                  <p class="heading is-size-7">
+                    <span class="has-text-info">San Francisco, CA</span>
+                    <span class="has-text-weight-light has-text-grey-lighter">|</span>
+                    <span class="has-text-grey">Jun 2016 - Sep 2016</span>
+                  </p>
+                  <div class="card">
+                    <div class="card-content">
+                      <div class="media">
+                        <div class="media-left">
+                          <figure class="image is-48x48">
+                            <img src="assets/images/autodesk.jpg" alt="Placeholder image">
+                          </figure>
+                        </div>
+                        <div class="media-content">
+                          <p class="title is-6">Autodesk</p>
+                          <p class="subtitle is-6">Data Science Intern</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="timeline-header">
+                <span class="tag is-info">2016</span>
+              </div>
+
+              <!-- Altec -->
+              <div class="timeline-item is-info">
+                <div class="timeline-marker has-text-white is-icon"><i class="fas fa-briefcase"></i></div>
+                <div class="timeline-content">
+                  <p class="heading is-size-7">
+                    <span class="has-text-info">Saint Joseph, MO</span>
+                    <span class="has-text-weight-light has-text-grey-lighter">|</span>
+                    <span class="has-text-grey">Jun 2015 - Sep 2015</span>
+                  </p>
+                  <div class="card">
+                    <div class="card-content">
+                      <div class="media">
+                        <div class="media-left">
+                          <figure class="image is-48x48">
+                            <img src="assets/images/altec.jpg" alt="Placeholder image">
+                          </figure>
+                        </div>
+                        <div class="media-content">
+                          <p class="title is-6">Altec</p>
+                          <p class="subtitle is-6">Manufacturing Engineering Intern</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="timeline-header">
+                <span class="tag is-info">2015</span>
+              </div>
+
             </div>
-            <div class="extra content">
-              <div class="meta right floated">Built with d3.js.</div>
-            </div>
+
           </div>
+
+          <div id="work-content" class="hidden">
+          </div>
+
+          <div id="contact-content" class="hidden">
+          </div>
+
         </div>
       </div>
-    </div> -->
-    <!-- <div id="demo-block" class="ui center aligned container">
-    </div> -->
+
+
+    </section>
   </main>
   <footer>
-    Built and animated with
-    <a href="https://d3js.org/" target="_blank"> d3.js</a>
-    and
-    <a href="https://animejs.com/" target="_blank">anime.js</a>
+    <p>
+      Hi this is a footer.
+    </p>
   </footer>
+
 </body>
 
 </html>
