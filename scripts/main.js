@@ -243,19 +243,6 @@ function fadeInAll() {
   })
 }
 
-function transformSkewedBackground() {
-  anime({
-    targets: '#triangle-1',
-    points: [
-      { value: '48,48, 48,52 52,52 52,48 ' },
-      { value: '0,0 0,40 100,48 100,0' },
-    ],
-    easing: 'easeOutQuad',
-    duration: 2000,
-  })
-}
-
-
 document.addEventListener('DOMContentLoaded', function(event) {
   addTypingInterestText([
     'data science.',

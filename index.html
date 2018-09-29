@@ -28,27 +28,6 @@
 
       <div class="hero-body">
 
-        <svg id="skewed-background" viewBox="0 0 100 100" preserveAspectRatio="none">
-
-
-          <filter id="dropshadow" height="130%">
-            <feGaussianBlur in="SourceAlpha" stdDeviation="6"/> <!-- stdDeviation is how much to blur -->
-            <feOffset dx="1" dy="1" result="offsetblur"/> <!-- how much to offset -->
-            <feComponentTransfer>
-              <feFuncA type="linear" slope="0.1"/> <!-- slope is the opacity of the shadow -->
-            </feComponentTransfer>
-            <feMerge>
-              <feMergeNode/> <!-- this contains the offset blurred image -->
-              <feMergeNode in="SourceGraphic"/> <!-- this contains the element that the filter is applied to -->
-            </feMerge>
-          </filter>
-
-          <polygon id="triangle-1" points="0,0 0,40 100,48 100,0" style="filter:url(#dropshadow)" /> -->
-          <!-- <polygon id="triangle-2" points="100,0 100,27 60,0"/>
-          <!-- <line x1="0" y1="45" x2="100" y2="35" stroke="transparent" /> -->
-        </svg>
-
-
         <div class="section">
           <h1 class="title is-1 nowrap" id="heading">
             Hi, I'm Eric.

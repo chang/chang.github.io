@@ -32,19 +32,8 @@ body {
 
 .hero {
     /* why did adding position: relative fix the #skewed-background fit? */
-    background-color: transparent !important;
+    background-color: #141852 !important;
     position: relative;
-}
-
-#skewed-background {
-    background-color: #1B8EB4;
-
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
 }
 
 #triangle-1 {
