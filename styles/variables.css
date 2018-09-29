@@ -1,0 +1,17 @@
+/* main palette */
+/* https://www.schemecolor.com/night-sky-color-palette.php */
+body {
+    --palette-1: #855988;
+    --palette-2: #6B4984;
+    --palette-3: #2B2F77;
+    --palette-4: #FA7921;
+    --palette-5: #E55934;
+    --light-grey: #f6f9fc;
+
+    --sky-gradient-1: rgb(0, 3, 160);
+    --sky-gradient-2: rgb(5, 7, 139);
+    --sky-gradient-3: rgb(1, 2, 44);
+
+    --moon: yellow;
+
+}

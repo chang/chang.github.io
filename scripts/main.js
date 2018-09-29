@@ -257,9 +257,17 @@ document.addEventListener('DOMContentLoaded', function(event) {
   ];
   const tabs = new Tabs(tabSelectors);
   tabs.render();
-  // tabs.switchActiveTab(tabSelectors[1]);
 
-  // const viz = new HeroVisualization('#hero-d3');
-  // viz.render();
+  const sky = new NightSky({
+    numStars: 50,
+    numShootingStars: 4,
+    shootingStarColors: ["white", "gold", "red", "skyblue", "orange"],
+    stars: true,
+    moon: true,
+    shootingStars: false,
+  });
+
+  sky.render();
+  // tabs.switchActiveTab(tabSelectors[1]);
 
 });

@@ -1,13 +1,3 @@
-/* main palette */
-body {
-    --palette-1: #6772e5;
-    --palette-2: #3ecf8e;
-    --palette-3: #408af8;
-    --palette-4: #FA7921;
-    --palette-5: #E55934;
-    --light-grey: #f6f9fc;
-}
-
 .has-text-palette-1 {
     color: var(--palette-1) !important;
 }
@@ -29,19 +19,9 @@ body {
 }
 
 /* hero */
-
 .hero {
-    /* why did adding position: relative fix the #skewed-background fit? */
-    background-color: #141852 !important;
+    background-color: transparent !important;
     position: relative;
-}
-
-#triangle-1 {
-    fill: var(--palette-2);
-}
-
-#triangle-2 {
-    fill: var(--palette-1);
 }
 
 #heading {
@@ -68,26 +48,16 @@ body {
     border-bottom: white solid 1px;
 }
 
-.northwestern {
-    color: #4e2a84;
-}
-
-.asana {
-    background: -webkit-linear-gradient(#FD8D3C, #FF4D58);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background: -moz-linear-gradient(#FD8D3C, #FF4D58);
-    -moz-background-clip: text;
-    -moz-text-fill-color: transparent;
-}
-
 .hidden {
     display: none;
 }
 
-
 .debug {
     border: 1px magenta solid !important;
+}
+
+.asana {
+    color: #FF4D58;
 }
 
 /* animated external icon links */
@@ -157,35 +127,6 @@ body {
     margin-top: 1em;
 }
 
-
-.python-tag {
-    background: #3572A5 !important;
-}
-
-.r-tag {
-    background: #198CE7 !important;
-}
-
-.javascript-tag {
-    background: #f1e05a !important;
-}
-
-.scala-tag {
-    background: #c22d40 !important;
-}
-
-.haskell-tag {
-    background: #5e5086 !important;
-}
-
-.rust-tag {
-    background: #dea584 !important;
-}
-
-.sql-tag {
-    background: #dad8d8 !important;
-}
-
 #pdf-button {
     position: relative;
     top: -0.16em;
@@ -203,3 +144,4 @@ body {
     -webkit-transition-property: color, background-color;
     transition-property: color, background-color;
 }
+
