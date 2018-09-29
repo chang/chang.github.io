@@ -8,15 +8,13 @@
 
   <!-- assets -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Noticia+Text:700" rel="stylesheet">
   <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
   <link rel="stylesheet" href="assets/bulma-timeline.min.css">
-
   <link rel="stylesheet" type="text/css" media="screen" href="styles/main.css" />
 
   <script src="https://d3js.org/d3.v5.min.js"></script>
-  <!-- <script src="assets/anime.min.js"></script> -->
+  <script src="assets/anime.min.js"></script>
   <script src="assets/typed.min.js"></script>
   <script src="scripts/main.js"></script>
 
@@ -24,34 +22,77 @@
 <body>
 
   <main>
-    <section class="hero is-light">
-
+    <section class="hero is-black">
 
       <div class="hero-head"></div>
 
-
       <div class="hero-body">
-        <div class="columns">
 
-          <!-- name and interests -->
-          <div class="column is-5">
-            <div class="section">
-              <h1 class="title is-1">
-                Eric Chang
-              </h1>
+        <svg id="skewed-background" viewBox="0 0 100 100" preserveAspectRatio="none">
 
-              <h4 id="interest-text" class="subtitle is-4 has-text-grey">
-                <span>I like</span> <span id="interests" class="has-text-weight-bold"></span>
-              </h4>
 
-            </div>
+          <filter id="dropshadow" height="130%">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="6"/> <!-- stdDeviation is how much to blur -->
+            <feOffset dx="1" dy="1" result="offsetblur"/> <!-- how much to offset -->
+            <feComponentTransfer>
+              <feFuncA type="linear" slope="0.1"/> <!-- slope is the opacity of the shadow -->
+            </feComponentTransfer>
+            <feMerge>
+              <feMergeNode/> <!-- this contains the offset blurred image -->
+              <feMergeNode in="SourceGraphic"/> <!-- this contains the element that the filter is applied to -->
+            </feMerge>
+          </filter>
+
+          <polygon id="triangle-1" points="0,0 0,40 100,48 100,0" style="filter:url(#dropshadow)" /> -->
+          <!-- <polygon id="triangle-2" points="100,0 100,27 60,0"/>
+          <!-- <line x1="0" y1="45" x2="100" y2="35" stroke="transparent" /> -->
+        </svg>
+
+
+        <div class="section">
+          <h1 class="title is-1 nowrap" id="heading">
+            Hi, I'm Eric.
+          </h1>
+          <h4 id="interest-text" class="subtitle is-4 nowrap">
+            <span>I like</span> <span id="interests" class="underlined"></span>
+          </h4>
+
+
+          <div class="links" id="links">
+            <a class="link-item has-text-grey-lighter" target="_blank">
+              <span class="icon">
+                <i class="fas fa-map-marker-alt"></i>
+              </span>
+              <span class="link-text">San Francisco, CA</span>
+            </a>
+
+            <a class="link-item has-text-grey-lighter" href="https://github.com/chang" target="_blank">
+              <span class="icon">
+                <i class="fab fa-github"></i>
+              </span>
+              <span class="link-text">GitHub</span>
+            </a>
+
+            <a class="link-item has-text-grey-lighter" href="mailto:me@ericchang.me" target="_blank">
+              <span class="icon">
+                <i class="fas fa-envelope"></i>
+              </span>
+              <span class="link-text">Email</span>
+            </a>
+
+            <a class="link-item has-text-grey-lighter" href="https://linkedin.com/in/ericcchang" target="_blank">
+              <span class="icon">
+                <i class="fab fa-linkedin"></i>
+              </span>
+              <span class="link-text">LinkedIn</span>
+            </a>
+
           </div>
 
-          <!-- cool d3 thing -->
-          <div id="hero-d3" class="column">
-          </div>
+
 
         </div>
+
       </div>
 
 
@@ -60,16 +101,22 @@
           <div class="container">
             <ul>
               <li id="about-tab" class="is-active">
-                <a>About</a>
-              </li>
-              <li id="experience-tab">
-                <a>Experience</a>
+                <a class="hvr-fade">
+                  <span class="icon is-small"><i class="fas fa-user"></i></span>
+                  <span>About</span>
+                </a>
               </li>
               <li id="work-tab">
-                <a>Work</a>
+                <a class="hvr-fade">
+                  <span class="icon is-small"><i class="fas fa-code"></i></span>
+                  <span>Code</span>
+                </a>
               </li>
-              <li id="contact-tab">
-                <a>Contact</a>
+              <li id="experience-tab">
+                <a class="hvr-fade">
+                  <span class="icon is-small"><i class="fas fa-briefcase"></i></span>
+                  <span>Experience</span>
+                </a>
               </li>
             </ul>
           </div>
@@ -78,242 +125,441 @@
 
     </section>
 
-    <!-- main content -->
-    <section class="section">
-      <div class="columns is-mobile is-centered">
+    <!-- TAB CONTENT -->
+    <section id="tab-content" class="section">
 
-        <div class="column is-8">
+      <!-- About -->
+      <div id="about-content">
+        <div class="container">
+          <div class="columns is-centered">
+            <div class="column is-8">
 
-          <!-- About -->
-          <div id="about-content">
-            <div class="content">
-              <h2 class="has-text-info">Hi, I'm Eric.</h2>
-              <p class="is-size-5">
-                I'm a recent grad from <span class="northwestern has-text-weight-bold">Northwestern University</span>, where I studied Industrial Engineering.
-              </p>
+              <div class="content">
+                <!-- <figure class="image is-128x128">
+                  <img src="assets/images/me.jpeg" alt="">
+                </figure> -->
 
-              <p class="is-size-5">
-                <span class="has-text-weight-semibold">This August,</span> I'll be joining
-                <a href="http://asana.com" class="asana has-text-weight-bold" target="_blank">@Asana</a>
-                as a <span class="has-text-weight-semibold">Data Scientist</span>, working on their data engineering and machine learning platform.
-              </p>
+                <p class="is-size-6-mobile is-size-5-tablet">
+                  <span class="has-text-weight-semibold has-text-palette-2">Hi, I'm Eric.</span>
+                  <!-- <span class="has-text-weight-semibold has-text-palette-2">I'm a data scientist from Chicago, IL.</span> -->
+                  I'm a recent graduate from Northwestern University, where I studied Industrial Engineering.
+                </p>
 
-              <p class="is-size-5">
-                <span class="has-text-weight-semibold has-text-info">I think free and open source software is the coolest thing ever.</span>
-                I've made some contributions to projects like scikit-learn and Boostnote, and I plan to continue contributing in the future.
-              </p>
+                <p class="is-size-6-mobile is-size-5-tablet">
+                  <span class="has-text-weight-semibold has-text-palette-2">Currently,</span>
+                  I'm a Data Scientist at <a href="http://asana.com" class="asana" target="_blank">Asana</a> in San Francisco, working on their data infrastructure.
+                </p>
 
-              <p class="is-size-5">
-                In my free time, I also enjoy calligraphy, viola, and computer aided design.
-              </p>
-            </div>
-          </div>
+                <p class="is-size-6-mobile is-size-5-tablet">
+                  <span class="has-text-weight-semibold has-text-palette-2">I think free and open source software is the coolest thing.</span>
+                  I've made some contributions to projects like <a href="http://scikit-learn.org" target="_blank">scikit-learn </a> and <a href="http://boostnote.io/" target="_blank">Boostnote</a>,
+                  and I'm always looking for ways to do more.
+                </p>
 
-          <!-- Experience -->
-          <div id="experience-content" class="hidden">
+                <p class="is-size-6-mobile is-size-5-tablet">
+                  <span class="has-text-weight-semibold has-text-palette-2">In my free time,</span>
+                  I like to play string instruments, write calligraphy, and make stuff with 3D printers and code.
+                </p>
 
-
-            <div class="timeline">
-
-              <!-- Start tag -->
-              <header class="timeline-header">
-                <span class="tag is-info">
-                  2019
-                </span>
-              </header>
-
-
-              <!-- Asana -->
-              <div class="timeline-item is-info">
-                <div class="timeline-marker has-text-white is-icon"><i class="fas fa-briefcase"></i></div>
-                <div class="timeline-content">
-                  <p class="heading is-size-7">
-                    <span class="has-text-info">San Francisco, CA</span>
-                    <span class="has-text-weight-light has-text-grey-lighter">|</span>
-                    <span class="has-text-grey">Aug 2018 - ?</span>
-                  </p>
-                  <div class="card">
-                    <div class="card-content">
-                      <div class="media">
-                        <div class="media-left">
-                          <figure class="image is-48x48">
-                            <img src="assets/images/asana.png" alt="Placeholder image">
-                          </figure>
-                        </div>
-                        <div class="media-content">
-                          <p class="title is-6">Asana</p>
-                          <p class="subtitle is-6">Data Scientist</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <p class="is-size-6-mobile is-size-5-tablet">
+                  I'm a massive fan of Terry Pratchett's Discworld novels.
+                </p>
               </div>
-
-              <!-- Graduation -->
-              <div class="timeline-item is-info">
-                <div class="timeline-marker"></div>
-                <div class="timeline-content">
-                  <p class="heading is-size-7">
-                    <span class="has-text-grey">Jun 2018</span>
-                    <h2>Graduated from <span class="northwestern">Northwestern</span>.</h2>
-                  </p>
-                </div>
-              </div>
-
-
-              <!-- 2018 -->
-              <header class="timeline-header">
-                <span class="tag is-info">2018</span>
-              </header>
-
-
-              <!-- Classy -->
-              <div class="timeline-item is-info">
-                <div class="timeline-marker has-text-white is-icon"><i class="fas fa-briefcase"></i></div>
-                <div class="timeline-content">
-                  <p class="heading is-size-7">
-                    <span class="has-text-info">San Diego, CA</span>
-                    <span class="has-text-weight-light has-text-grey-lighter">|</span>
-                    <span class="has-text-grey">Sep 2017 - Dec 2017</span>
-                  </p>
-                  <div class="card">
-                    <div class="card-content">
-                      <div class="media">
-                        <div class="media-left">
-                          <figure class="image is-48x48">
-                            <img src="assets/images/classy.png" alt="Placeholder image">
-                          </figure>
-                        </div>
-                        <div class="media-content">
-                          <p class="title is-6">Classy.org</p>
-                          <p class="subtitle is-6">Data Science Intern</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Groupon -->
-              <div class="timeline-item is-info">
-                <div class="timeline-marker has-text-white is-icon"><i class="fas fa-briefcase"></i></div>
-                <div class="timeline-content">
-                  <p class="heading is-size-7">
-                    <span class="has-text-info">Seattle, WA</span>
-                    <span class="has-text-weight-light has-text-grey-lighter">|</span>
-                    <span class="has-text-grey">Jun 2017 - Sep 2017</span>
-                  </p>
-                  <div class="card">
-                    <div class="card-content">
-                      <div class="media">
-                        <div class="media-left">
-                          <figure class="image is-48x48">
-                            <img src="assets/images/groupon.png" alt="Placeholder image">
-                          </figure>
-                        </div>
-                        <div class="media-content">
-                          <p class="title is-6">Groupon</p>
-                          <p class="subtitle is-6">Software Engineering Intern</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-
-              <!-- 2017 -->
-              <header class="timeline-header">
-                <span class="tag is-info">2017</span>
-              </header>
-
-
-              <!-- Autodesk -->
-              <div class="timeline-item is-info">
-                <div class="timeline-marker has-text-white is-icon"><i class="fas fa-briefcase"></i></div>
-                <div class="timeline-content">
-                  <p class="heading is-size-7">
-                    <span class="has-text-info">San Francisco, CA</span>
-                    <span class="has-text-weight-light has-text-grey-lighter">|</span>
-                    <span class="has-text-grey">Jun 2016 - Sep 2016</span>
-                  </p>
-                  <div class="card">
-                    <div class="card-content">
-                      <div class="media">
-                        <div class="media-left">
-                          <figure class="image is-48x48">
-                            <img src="assets/images/autodesk.jpg" alt="Placeholder image">
-                          </figure>
-                        </div>
-                        <div class="media-content">
-                          <p class="title is-6">Autodesk</p>
-                          <p class="subtitle is-6">Data Science Intern</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="timeline-header">
-                <span class="tag is-info">2016</span>
-              </div>
-
-              <!-- Altec -->
-              <div class="timeline-item is-info">
-                <div class="timeline-marker has-text-white is-icon"><i class="fas fa-briefcase"></i></div>
-                <div class="timeline-content">
-                  <p class="heading is-size-7">
-                    <span class="has-text-info">Saint Joseph, MO</span>
-                    <span class="has-text-weight-light has-text-grey-lighter">|</span>
-                    <span class="has-text-grey">Jun 2015 - Sep 2015</span>
-                  </p>
-                  <div class="card">
-                    <div class="card-content">
-                      <div class="media">
-                        <div class="media-left">
-                          <figure class="image is-48x48">
-                            <img src="assets/images/altec.jpg" alt="Placeholder image">
-                          </figure>
-                        </div>
-                        <div class="media-content">
-                          <p class="title is-6">Altec</p>
-                          <p class="subtitle is-6">Manufacturing Engineering Intern</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-
-              <div class="timeline-header">
-                <span class="tag is-info">2015</span>
-              </div>
-
             </div>
 
           </div>
-
-          <div id="work-content" class="hidden">
-          </div>
-
-          <div id="contact-content" class="hidden">
-          </div>
-
         </div>
       </div>
 
+      <!-- Work -->
+      <div id="work-content" class="hidden">
+
+        <div class="columns is-centered">
+          <div class="column is-10">
+            <div class="content">
+              <h2 class="has-text-palette-1">Code</h2>
+              <p class="is-size-6-mobile is-size-5-tablet">Some of the code I've written and open source contributions I've made.</p>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+
+      <!-- Experience -->
+      <div id="experience-content" class="hidden">
+
+        <!-- Cards -->
+        <div class="columns is-centered">
+          <!-- Experience intro -->
+          <div class="column is-10">
+            <div class="content">
+              <h2 class="has-text-palette-1">
+                Experience
+
+                <a id="pdf-button" class="button is-outlined is-danger is-pulled-right hvr-fade" href="assets/EricChang_Resume.pdf" target="_blank">
+                  <span class="icon">
+                    <i class="far fa-file-pdf"></i>
+                  </span>
+                  <span>PDF</span>
+                </a>
+              </h2>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="columns">
+          <div class="column is-1"></div>
+          <div class="column is-5">
+
+            <article class="message is-link">
+              <div class="message-header">
+                <p>Work</p>
+              </div>
+              <div class="message-body">
+                <div class="timeline">
+                  <!-- Start tag -->
+                  <header class="timeline-header">
+                    <span class="tag is-info">
+                      2019
+                    </span>
+                  </header>
+
+                  <!-- Asana -->
+                  <div class="timeline-item is-info">
+                    <div class="timeline-marker has-text-white is-icon"><i class="fas fa-briefcase"></i></div>
+                    <div class="timeline-content">
+                      <p class="heading is-size-7">
+                        <span class="has-text-info">San Francisco, CA</span>
+                        <span class="has-text-weight-light has-text-grey-lighter">|</span>
+                        <span class="has-text-grey">Aug 2018 - ?</span>
+                      </p>
+                      <div class="card">
+                        <div class="card-content">
+                          <div class="media">
+                            <div class="media-left">
+                              <figure class="image is-48x48">
+                                <img src="assets/images/asana.png" alt="Placeholder image">
+                              </figure>
+                            </div>
+                            <div class="media-content">
+                              <p class="title is-6">Asana</p>
+                              <p class="subtitle has-text-grey is-6">Data Scientist</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- 2018 -->
+                  <header class="timeline-header">
+                    <span class="tag is-info">2018</span>
+                  </header>
+
+
+                  <!-- Classy -->
+                  <div class="timeline-item is-info">
+                    <div class="timeline-marker has-text-white is-icon"><i class="fas fa-briefcase"></i></div>
+                    <div class="timeline-content">
+                      <p class="heading is-size-7">
+                        <span class="has-text-info">San Diego, CA</span>
+                        <span class="has-text-weight-light has-text-grey-lighter">|</span>
+                        <span class="has-text-grey">Sep 2017 - Dec 2017</span>
+                      </p>
+                      <div class="card">
+                        <div class="card-content">
+                          <div class="media">
+                            <div class="media-left">
+                              <figure class="image is-48x48">
+                                <img src="assets/images/classy.png" alt="Placeholder image">
+                              </figure>
+                            </div>
+                            <div class="media-content">
+                              <p class="title is-6">Classy.org</p>
+                              <p class="subtitle has-text-grey is-6">Data Science Intern</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Groupon -->
+                  <div class="timeline-item is-info">
+                    <div class="timeline-marker has-text-white is-icon"><i class="fas fa-briefcase"></i></div>
+                    <div class="timeline-content">
+                      <p class="heading is-size-7">
+                        <span class="has-text-info">Seattle, WA</span>
+                        <span class="has-text-weight-light has-text-grey-lighter">|</span>
+                        <span class="has-text-grey">Jun 2017 - Sep 2017</span>
+                      </p>
+                      <div class="card">
+                        <div class="card-content">
+                          <div class="media">
+                            <div class="media-left">
+                              <figure class="image is-48x48">
+                                <img src="assets/images/groupon.png" alt="Placeholder image">
+                              </figure>
+                            </div>
+                            <div class="media-content">
+                              <p class="title is-6">Groupon</p>
+                              <p class="subtitle has-text-grey is-6">Software Engineering Intern</p>
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <!-- 2017 -->
+                  <header class="timeline-header">
+                    <span class="tag is-info">2017</span>
+                  </header>
+
+
+                  <!-- Autodesk -->
+                  <div class="timeline-item is-info">
+                    <div class="timeline-marker has-text-white is-icon"><i class="fas fa-briefcase"></i></div>
+                    <div class="timeline-content">
+                      <p class="heading is-size-7">
+                        <span class="has-text-info">San Francisco, CA</span>
+                        <span class="has-text-weight-light has-text-grey-lighter">|</span>
+                        <span class="has-text-grey">Jun 2016 - Sep 2016</span>
+                      </p>
+                      <div class="card">
+                        <div class="card-content">
+                          <div class="media">
+                            <div class="media-left">
+                              <figure class="image is-48x48">
+                                <img src="assets/images/autodesk.jpg" alt="Placeholder image">
+                              </figure>
+                            </div>
+                            <div class="media-content">
+                              <p class="title is-6">Autodesk</p>
+                              <p class="subtitle has-text-grey is-6">Data Science Intern</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="timeline-header">
+                    <span class="tag is-info">2016</span>
+                  </div>
+
+                  <!-- Altec -->
+                  <div class="timeline-item is-info">
+                    <div class="timeline-marker has-text-white is-icon"><i class="fas fa-briefcase"></i></div>
+                    <div class="timeline-content">
+                      <p class="heading is-size-7">
+                        <span class="has-text-info">Saint Joseph, MO</span>
+                        <span class="has-text-weight-light has-text-grey-lighter">|</span>
+                        <span class="has-text-grey">Jun 2015 - Sep 2015</span>
+                      </p>
+                      <div class="card">
+                        <div class="card-content">
+                          <div class="media">
+                            <div class="media-left">
+                              <figure class="image is-48x48">
+                                <img src="assets/images/altec.jpg" alt="Placeholder image">
+                              </figure>
+                            </div>
+                            <div class="media-content">
+                              <p class="title is-6">Altec</p>
+                              <p class="subtitle has-text-grey is-6">Manufacturing Engineering Intern</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="timeline-header">
+                    <span class="tag is-info">2015</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- Skills and resume link -->
+          <div class="column is-1"></div>
+          <div class="column is-4">
+            <!-- PDF copy -->
+            <!-- <a class="button is-medium">
+              <span class="icon is-medium">
+                <i class="far fa-file-pdf"></i>
+              </span>
+              <span>PDF</span>
+            </a> -->
+
+            <!-- Skills -->
+
+            <article class="message is-link">
+              <div class="message-header">
+                <p>Education</p>
+              </div>
+              <div class="message-body">
+                <div class="container">
+                  <div class="content">
+                    <p class="has-text-weight-bold" style="margin-bottom: 0.3em">Northwestern University, 2018</p>
+                    <p>B.S. Industrial Engineering</p>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="message is-link">
+              <div class="message-header">
+                <p>Languages</p>
+              </div>
+              <div class="message-body">
+                <p class="heading medium">Proficient</p>
+                <div class="field is-grouped is-grouped-multiline">
+
+                  <div class="control">
+                    <div class="tags has-addons">
+                      <a class="tag is-medium is-white">Python</a>
+                      <a class="tag python-tag"></a>
+                    </div>
+                  </div>
+
+                  <div class="control">
+                    <div class="tags has-addons">
+                      <a class="tag is-medium is-white">R</a>
+                      <a class="tag r-tag"></a>
+                    </div>
+                  </div>
+
+                  <div class="control">
+                    <div class="tags has-addons">
+                      <a class="tag is-medium is-white">SQL</a>
+                      <a class="tag sql-tag"></a>
+                    </div>
+                  </div>
+
+                </div>
+
+                <p class="heading medium">Intermediate</p>
+                <div class="field is-grouped is-grouped-multiline">
+
+                  <div class="control">
+                    <div class="tags has-addons">
+                      <a class="tag is-medium is-white">Scala</a>
+                      <a class="tag scala-tag"></a>
+                    </div>
+                  </div>
+
+                  <div class="control">
+                    <div class="tags has-addons">
+                      <a class="tag is-medium is-white">Rust</a>
+                      <a class="tag rust-tag"></a>
+                    </div>
+                  </div>
+
+                </div>
+
+                <p class="heading medium">Beginner</p>
+                <div class="field is-grouped is-grouped-multiline">
+
+                  <div class="control">
+                    <div class="tags has-addons">
+                      <a class="tag is-medium is-white">Javascript</a>
+                      <a class="tag javascript-tag"></a>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </article>
+
+            <article class="message is-link">
+              <div class="message-header">
+                <p>Libraries</p>
+              </div>
+              <div class="message-body">
+
+                <div class="field is-grouped is-grouped-multiline">
+                  <div class="control">
+                    <div class="tags has-addons">
+                      <a class="tag is-white">tidyverse</a>
+                      <a class="tag r-tag has-text-white">R</a>
+                    </div>
+                  </div>
+
+                  <div class="control">
+                    <div class="tags has-addons">
+                      <a class="tag is-white">ggplot2</a>
+                      <a class="tag r-tag has-text-white">R</a>
+                    </div>
+                  </div>
+
+                  <div class="control">
+                    <div class="tags has-addons">
+                      <a class="tag is-white">shiny</a>
+                      <a class="tag r-tag has-text-white">R</a>
+                    </div>
+                  </div>
+
+                  <div class="control">
+                    <div class="tags has-addons">
+                      <a class="tag is-white">scikit-learn</a>
+                      <a class="tag python-tag has-text-white">python</a>
+                    </div>
+                  </div>
+
+                  <div class="control">
+                    <div class="tags has-addons">
+                      <a class="tag is-white">pandas</a>
+                      <a class="tag python-tag has-text-white">python</a>
+                    </div>
+                  </div>
+
+                  <div class="control">
+                    <div class="tags has-addons">
+                      <a class="tag is-white">d3</a>
+                      <a class="tag javascript-tag">javascript</a>
+                    </div>
+                  </div>
+
+                  <div class="control">
+                    <div class="tags has-addons">
+                      <a class="tag is-white">spark</a>
+                      <a class="tag scala-tag has-text-white">scala</a>
+                    </div>
+                  </div>
+
+                  <p class="message-footer">For most data scientists this is constantly changing, so these are just my favorites.</p>
+
+                </div>
+              </div>
+            </article>
+
+            <article class="message is-link">
+              <div class="message-header">
+                <p>Tools</p>
+              </div>
+              <div class="message-body">
+                <span class="tag is-medium is-white">Git</span>
+                <span class="tag is-medium is-white">Bash</span>
+                <span class="tag is-medium is-white">ZSH</span>
+                <span class="tag is-medium is-white">Docker</span>
+              </div>
+            </article>
+          </div>
+
+          <div class="column is-1"></div>
+
+        </div>
+
+      </div>
 
     </section>
   </main>
-  <footer>
-    <p>
-      Hi this is a footer.
-    </p>
-  </footer>
-
 </body>
 
 </html>

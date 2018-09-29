@@ -1,23 +1,85 @@
-/*
-Style guide: http://rscss.io/components.html
-*/
+/* main palette */
+body {
+    --palette-1: #6772e5;
+    --palette-2: #3ecf8e;
+    --palette-3: #408af8;
+    --palette-4: #FA7921;
+    --palette-5: #E55934;
+    --light-grey: #f6f9fc;
+}
 
+.has-text-palette-1 {
+    color: var(--palette-1) !important;
+}
+
+.has-text-palette-2 {
+    color: var(--palette-2) !important;
+}
+
+.has-text-palette-3 {
+    color: var(--palette-3) !important;
+}
+
+.has-text-palette-4 {
+    color: var(--palette-4) !important;
+}
+
+.has-text-palette-5 {
+    color: var(--palette-5) !important;
+}
+
+/* hero */
+
+.hero {
+    /* why did adding position: relative fix the #skewed-background fit? */
+    background-color: transparent !important;
+    position: relative;
+}
+
+#skewed-background {
+    background-color: #1B8EB4;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+#triangle-1 {
+    fill: var(--palette-2);
+}
+
+#triangle-2 {
+    fill: var(--palette-1);
+}
+
+#heading {
+    color: white;
+}
+
+#interest-text {
+    color: white;
+}
+
+/* utility classes */
 .vertically-centered {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-#interest-text {
-    margin-top: 1em;
+.nowrap {
+    white-space: nowrap;
 }
 
-#interests {
-    text-decoration: underline;
+
+.underlined {
+    border-bottom: white solid 1px;
 }
 
 .northwestern {
-    font-family: 'Noticia Text', serif;
     color: #4e2a84;
 }
 
@@ -36,43 +98,119 @@ Style guide: http://rscss.io/components.html
 
 
 .debug {
-    border: 1px magenta solid;
+    border: 1px magenta solid !important;
 }
+
+/* animated external icon links */
+
+.links {
+    margin-top: 4em;
+}
+
+.link-item {
+    display: table;
+    cursor: pointer;
+    margin-bottom: 0.7em;
+    padding: 0.3em;
+    padding-right: 0.4em;
+    color: white !important;
+
+    transition-duration: 0.7s;
+}
+
+.link-item .icon {
+    vertical-align: middle;
+    font-size: 1.2em;
+
+    transition-duration: inherit;
+}
+
+.link-item .icon .fa-envelope {
+    font-size: 0.9em;
+}
+
+.link-item .link-text {
+    font-size: 0.9em;
+    vertical-align: middle;
+    margin-left: 0.17em;
+
+    transition-duration: inherit;
+}
+
+.link-item:hover {
+    border-radius: 3px;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.link-item:hover .icon {
+    color: white !important;
+    transform: translateX(-1.5px) rotate(-10deg);
+}
+
+.link-item:hover .link-text {
+    color: white !important;
+}
+
+#interest-text {
+    margin-top: 1em;
+}
+
 
 body {
     font-family: 'Open Sans';
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
 }
 
-footer {
-    margin: auto auto 0 auto;
+.column .is-centered {
+    justify-content: center;
 }
 
-/* Icon Back */
-.hvr-icon-back {
-    display: inline-block;
-    vertical-align: middle;
-    -webkit-transform: perspective(1px) translateZ(0);
-    transform: perspective(1px) translateZ(0);
-    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-    -webkit-transition-duration: 0.1s;
-    transition-duration: 0.1s;
-  }
-
-.hvr-icon-back .hvr-icon {
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-    -webkit-transition-duration: 0.1s;
-    transition-duration: 0.1s;
-    -webkit-transition-property: transform;
-    transition-property: transform;
-    -webkit-transition-timing-function: ease-out;
-    transition-timing-function: ease-out;
+.message-body .heading:not(:first-of-type) {
+    margin-top: 1em;
 }
 
-.hvr-icon-back:hover .hvr-icon, .hvr-icon-back:focus .hvr-icon, .hvr-icon-back:active .hvr-icon {
-    -webkit-transform: translateX(-4px);
-    transform: translateX(-4px);
+
+.python-tag {
+    background: #3572A5 !important;
+}
+
+.r-tag {
+    background: #198CE7 !important;
+}
+
+.javascript-tag {
+    background: #f1e05a !important;
+}
+
+.scala-tag {
+    background: #c22d40 !important;
+}
+
+.haskell-tag {
+    background: #5e5086 !important;
+}
+
+.rust-tag {
+    background: #dea584 !important;
+}
+
+.sql-tag {
+    background: #dad8d8 !important;
+}
+
+#pdf-button {
+    position: relative;
+    top: -0.16em;
+}
+
+.message-footer {
+    margin-top: 1em;
+    font-size: 0.7em;
+}
+
+/* Fade */
+.hvr-fade:hover {
+    -webkit-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+    -webkit-transition-property: color, background-color;
+    transition-property: color, background-color;
 }

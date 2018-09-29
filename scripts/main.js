@@ -5,9 +5,15 @@ function addTypingInterestText(interests) {
     strings: interests,
     typeSpeed: 70,
     backSpeed: 70,
-    backDelay: 2500,
+    backDelay: 3500,
     showCursor: true,
     loop: true,
+
+    onStringTyped: function(d, i) {
+      console.log(d);
+      console.log(i);
+
+    }
   });
 }
 
@@ -21,12 +27,41 @@ class Tabs {
   }
 
   switchActiveTab(newActive) {
-    document.querySelector(this.activeTab.tab).classList.remove('is-active');
-    document.querySelector(this.activeTab.content).style.display = 'none';
-    document.querySelector(newActive.tab).classList.add('is-active');
-    document.querySelector(newActive.content).style.display = 'block';
+    if (newActive === this.activeTab) {
+      return;
+    }
 
-    this.activeTab = newActive;
+    document.querySelector(this.activeTab.tab).classList.remove('is-active');
+    document.querySelector(newActive.tab).classList.add('is-active');
+
+    const newTabIsRightOfCurrent = this.selectors.indexOf(newActive) > this.selectors.indexOf(this.activeTab);
+    const translateX = newTabIsRightOfCurrent ? -10 : 10;
+
+    const fadeNewTabIn = function() {
+      anime({
+        targets: newActive.content,
+        opacity: [0, 1],
+        translateX: [-translateX, 0],
+        duration: 75,
+        easing: 'easeOutQuad',
+      })
+
+      // wrap display setting change in the complete callback to avoid a 'flash'
+      document.querySelector(this.activeTab.content).style.display = 'none';
+      document.querySelector(newActive.content).style.display = 'block';
+      this.activeTab = newActive;
+
+    }.bind(this);
+
+    anime({
+      targets: this.activeTab.content,
+      opacity: [1, 0],
+      translateX: [0, translateX],
+      duration: 75,
+      easing: 'easeInQuad',
+      complete: fadeNewTabIn,
+    })
+
   }
 
   render() {
@@ -65,7 +100,7 @@ class HeroVisualization {
       .append('svg')
         .attr('width', '100%')
         .attr('height', '200px')
-        // .attr('class', 'debug')
+    // .attr('class', 'debug')
   }
 
   canvasHeight() {
@@ -112,69 +147,77 @@ class HeroVisualization {
   updateRandom() {
     const data = this.makeRandomData();
     const colorScale = d3.scaleSequential(this.randomColorScheme())
-      .domain([0, this.canvasWidth()]);
+    .domain([0, this.canvasWidth()]);
 
     this.canvas
-      .selectAll('circle')
-      .transition()
-      .ease(d3.easeCubic)
-      .duration(1000)
-      .delay((d, i) => {
-        const mx = this.canvasWidth() / 2;
-        const my = this.canvasHeight() / 2;
-        const dx = Math.abs(mx - data[i].x);
-        const dy = Math.abs(my - data[i].y);
-        return (dx + dy) * 5;
-      })
-        .attr('cx', (d, i) => data[i].x)
-        .attr('cy', (d, i) => data[i].y)
-        .attr('fill', (d, i) => colorScale(data[i].x))
+    .selectAll('circle')
+    .transition()
+    .ease(d3.easeCubic)
+    .duration(1000)
+    .delay((d, i) => {
+      const mx = this.canvasWidth() / 2;
+      const my = this.canvasHeight() / 2;
+      const dx = Math.abs(mx - data[i].x);
+      const dy = Math.abs(my - data[i].y);
+      return (dx + dy) * 5;
+    })
+    .attr('cx', (d, i) => data[i].x)
+    .attr('cy', (d, i) => data[i].y)
+    .attr('fill', (d, i) => colorScale(data[i].x))
   }
 
   updateColor(horizontal, reverse) {
-    const duration = 1000;
+    const duration = 100;
     const width = this.canvasWidth();
     const height = this.canvasHeight();
 
     let colorScale;
     if (horizontal) {
       colorScale = d3.scaleSequential(this.randomColorScheme())
-        .domain([0, width]);
+      .domain([0, width]);
     } else {
       colorScale = d3.scaleSequential(this.randomColorScheme())
-        .domain([0, height]);
+      .domain([0, height]);
     }
 
+    const randomX = randomUniform(0, width);
+    const randomY = randomUniform(0, height);
+
     function delayFunction(d, i) {
-      if (horizontal) {
-        return duration * (d.x / width);
-      } else {
-        return duration * (d.y / height);
-      }
+      // if (horizontal) {
+      //   return duration * (d.x / width);
+      // } else {
+      //   return duration * (d.y / height);
+      // }
+      const distance = Math.sqrt((d.x - randomX) ** 2 + (d.y - randomY) ** 2) * 2;
+      console.log(distance);
+
+      return distance;
     }
 
     this.canvas
-      .selectAll('circle')
-      .transition()
-      .ease(d3.easeCubic)
-      .delay(delayFunction)
-        .attr('fill', (d) => colorScale(horizontal ? d.x : d.y))
-        .attr('r', 2 * this.opts.r)
-      .transition()
-        .attr('r', this.opts.r)
+    .selectAll('circle')
+    .transition()
+    .ease(d3.easeCubic)
+    .delay(delayFunction)
+    .duration(duration)
+    .attr('fill', (d) => colorScale(horizontal ? d.x : d.y))
+    .attr('r', 2 * this.opts.r)
+    .transition()
+    .attr('r', this.opts.r)
   }
 
   render() {
     // setup initial starting positions
     this.canvas
-      .selectAll('circle')
-      .data(this.makeRandomData())
-      .enter()
-      .append('circle')
-        .attr('cx', (d) => d.x)
-        .attr('cy', (d) => d.y)
-        .attr('r', this.opts.r)
-        .attr('fill', 'black')
+    .selectAll('circle')
+    .data(this.makeRandomData())
+    .enter()
+    .append('circle')
+    .attr('cx', (d) => d.x)
+    .attr('cy', (d) => d.y)
+    .attr('r', this.opts.r)
+    .attr('fill', 'black')
 
     setInterval(() => {
       this.updateColor(randomChoice([true, false]));
@@ -182,25 +225,54 @@ class HeroVisualization {
   }
 }
 
+
+function bounceMessage() {
+  anime({
+    targets: document.querySelectorAll('.message'),
+    scale: [0.9, 1],
+    opacity: [0.75, 1],
+    duration: 500,
+  })
+}
+
+function fadeInAll() {
+  anime({
+    targets: document.querySelectorAll(''),
+    opacity: [0, 1],
+    duration: 2000,
+  })
+}
+
+function transformSkewedBackground() {
+  anime({
+    targets: '#triangle-1',
+    points: [
+      { value: '48,48, 48,52 52,52 52,48 ' },
+      { value: '0,0 0,40 100,48 100,0' },
+    ],
+    easing: 'easeOutQuad',
+    duration: 2000,
+  })
+}
+
+
 document.addEventListener('DOMContentLoaded', function(event) {
   addTypingInterestText([
-    'data science',
-    'software engineering',
-    'open source',
+    'data science.',
+    'software engineering.',
+    'open source.',
   ]);
 
   const tabSelectors = [
     {tab: '#about-tab', content: '#about-content'},
-    {tab: '#experience-tab', content: '#experience-content'},
     {tab: '#work-tab', content: '#work-content'},
-    {tab: '#contact-tab', content: '#contact-content'},
+    {tab: '#experience-tab', content: '#experience-content'},
   ];
   const tabs = new Tabs(tabSelectors);
   tabs.render();
-  tabs.switchActiveTab(tabSelectors[1]);
+  // tabs.switchActiveTab(tabSelectors[1]);
 
-
-  const viz = new HeroVisualization('#hero-d3');
-  viz.render();
+  // const viz = new HeroVisualization('#hero-d3');
+  // viz.render();
 
 });
