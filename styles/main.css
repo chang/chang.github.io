@@ -1,21 +1,5 @@
-.has-text-palette-1 {
-    color: var(--palette-1) !important;
-}
-
-.has-text-palette-2 {
-    color: var(--palette-2) !important;
-}
-
-.has-text-palette-3 {
-    color: var(--palette-3) !important;
-}
-
-.has-text-palette-4 {
-    color: var(--palette-4) !important;
-}
-
-.has-text-palette-5 {
-    color: var(--palette-5) !important;
+body {
+    font-family: 'Open Sans';
 }
 
 /* hero */
@@ -30,6 +14,7 @@
 
 #interest-text {
     color: white;
+    margin-top: 1em;
 }
 
 /* utility classes */
@@ -58,6 +43,14 @@
 
 .asana {
     color: #FF4D58;
+}
+
+.tabs li a {
+    color: white;
+}
+
+.tabs li.is-active a {
+    color: var(--palette-2);
 }
 
 /* animated external icon links */
@@ -110,14 +103,7 @@
     color: white !important;
 }
 
-#interest-text {
-    margin-top: 1em;
-}
 
-
-body {
-    font-family: 'Open Sans';
-}
 
 .column .is-centered {
     justify-content: center;
@@ -136,12 +122,3 @@ body {
     margin-top: 1em;
     font-size: 0.7em;
 }
-
-/* Fade */
-.hvr-fade:hover {
-    -webkit-transition-duration: 0.2s;
-    transition-duration: 0.2s;
-    -webkit-transition-property: color, background-color;
-    transition-property: color, background-color;
-}
-
