@@ -6,7 +6,7 @@ body {
     --palette-3: rgb(1, 2, 44);
     --palette-4: #FA7921;
     --palette-5: #E55934;
-    --light-grey: #f6f9fc;
+    --light-grey: #f6f9fcb6;
 
     --sky-gradient-1: rgb(0, 3, 160);
     --sky-gradient-2: rgb(5, 7, 139);
@@ -34,6 +34,10 @@ body {
 
 .has-text-palette-5 {
     color: var(--palette-5) !important;
+}
+
+.has-text-light-grey {
+    color: var(--light-grey) !important;
 }
 
 /* Fade */
