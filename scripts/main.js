@@ -260,11 +260,8 @@ document.addEventListener('DOMContentLoaded', function(event) {
 
   const sky = new NightSky({
     numStars: 50,
-    numShootingStars: 4,
+    numShootingStars: 5,
     shootingStarColors: ["white", "gold", "red", "skyblue", "orange"],
-    stars: true,
-    moon: true,
-    shootingStars: false,
   });
 
   sky.render();

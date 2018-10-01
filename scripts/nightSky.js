@@ -2,8 +2,6 @@
 
 /**
  * My guess is that CSS > D3 > AnimeJS for animation performance.
- * Setting a less-efficient flag is for performance testing, otherwise it defaults
- * to the most efficient method.
  */
 const animateWithAnimeJS = false;
 const animateWithD3 = false;
@@ -12,6 +10,10 @@ const animateWithCSS = true;
 
 function randomUniform(min, max) {
 	return min + (max - min) * Math.random();
+}
+
+function randomUniformPercent(min, max) {
+  return `${randomUniform(min, max)}%`;
 }
 
 function randomChoice(collection) {
@@ -29,8 +31,22 @@ function shuffle(array) {
 }
 
 class NightSky {
+  defaults() {
+    return {
+      numStars: 50,
+      numShootingStars: 5,
+      shootingStarColors: ["white", "gold", "red", "skyblue", "orange"],
+      stars: true,
+      moon: true,
+      shootingStars: true,
+    }
+  }
+
   constructor(opts) {
-    this.opts = opts;
+    this.opts = {
+      ...this.defaults(),
+      ...opts
+    };
     this.canvas = this.setupCanvas();
   }
 
@@ -51,31 +67,31 @@ class NightSky {
   }
 
   addShootingStars() {
-    const canvasHeight = document.querySelector("#sky-canvas").clientHeight;
-    const canvasWidth = document.querySelector("#sky-canvas").clientWidth;
     for (let i = 0; i < this.opts.numShootingStars; i++) {
-      const startX = randomUniform(canvasWidth * 0.2, canvasWidth * 0.8);
-      const changeX = randomUniform(-(canvasWidth * 0.3), canvasWidth * 0.3);
-      const startY = randomUniform(-(canvasHeight * 0.1), canvasHeight * 0.2);
-      const changeY = randomUniform(canvasHeight * 0.2, canvasHeight * 0.8);
+      const startX = randomUniformPercent(90, 100);
+      const endX = randomUniformPercent(0, 70);
+      const startY = randomUniformPercent(-20, 10);  // start a bit out of frame so it's visible for longer
+      const endY = randomUniformPercent(60, 100);
+
+      const color = this.opts.shootingStarColors[i % this.opts.shootingStarColors.length];
 
       this.canvas
         .append("circle")
-          .attr("id", `shooting-star-circle-${i}`)
-          .attr("fill", randomChoice(this.opts.shootingStarColors))
+          .attr("id", `shooting-star-${i}`)
+          .attr("fill", color)
           .attr("opacity", 0)
+          .attr("r", randomUniform(0.5, 2))
           .style("will-change", "transform, opacity")
 
       anime({
-        targets: `#shooting-star-circle-${i}`,
-        translateX: [startX, startX + changeX],
-        translateY: [startY, startY + changeY],
+        targets: `#shooting-star-${i}`,
+        translateX: [startX, endX],
+        translateY: [startY, endY],
         translateZ: 0,
-        opacity: [0, 1, 0],
-        r: [0, randomUniform(0.5, 2), 0],
+        opacity: [0, 1, 1, 1, 0],
         easing: "easeOutCubic",
-        duration: randomUtaniform(2000, 4000),
-        delay: randomUniform(2000, 10 * 1000),
+        duration: randomUniform(2500, 6000),
+        delay: randomUniform(2000, 4000),
         loop: true,
       })
     }
@@ -95,7 +111,7 @@ class NightSky {
             targets: "#moon",
             duration: 2000,
             opacity: [0, 1],
-            translateY: ["+20px", "-20px"],
+            translateY: ["+80px", "-20px"],
             rotate: "-140deg",
             easing: "easeOutQuad",
             duration: 1500,
@@ -131,10 +147,12 @@ class NightSky {
             .ease(d3.easeLinear)
             .duration(() => 500 + Math.random() * 1000)
               .attr("opacity", 1)
+              .attr("r", (d) => d.r)
           .transition()
             .ease(d3.easeLinear)
             .duration(() => 500 + Math.random() * 1000)
               .attr("opacity", 0)
+              .attr("r", 0)
           .on("end", blink)
       }
       blink();
@@ -145,10 +163,10 @@ class NightSky {
           targets: `#${star.id}`,
           translateZ: 0,
           easing: "linear",
-          // r: [star.r, Math.random()],
-          opacity: [1, 0],
-          duration: 500 + Math.random() * 1000,
-          delay: Math.random() * 1000,
+          r: [0, star.r],
+          opacity: [0, 1],
+          duration: randomUniform(1000, 3000),
+          delay: randomUniform(500, 2500),
           direction: "alternate",
         })
       }
@@ -171,9 +189,9 @@ class NightSky {
 
     for (let i = 0; i < numStars; i++) {
       let s = {
-        x: `${100 * Math.random()}%`,
-        y: `${100 * Math.random()}%`,
-        r: 0.75 + 1.25 * Math.random(),
+        x: randomUniformPercent(0, 100),
+        y: randomUniformPercent(0, 80),
+        r: randomUniform(0.75, 2),
         id: `svg-star-${i}`,
       };
       stars.push(s);

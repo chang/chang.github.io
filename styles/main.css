@@ -42,7 +42,7 @@ body {
 }
 
 .asana {
-    color: #FF4D58;
+    color: rgb(255, 100, 110);
 }
 
 .tabs li a {
@@ -104,6 +104,13 @@ body {
 }
 
 
+#built-with-text {
+    font-size: 0.7em;
+    position: absolute;
+    top: 0;
+    right: 0.25em;
+    color: white;
+}
 
 .column .is-centered {
     justify-content: center;

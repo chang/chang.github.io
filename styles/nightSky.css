@@ -1,5 +1,5 @@
 .sky {
-    background: #7F7FD5;  /* fallback for old browsers */
+    background: var(--sky-gradient-1);  /* fallback for old browsers */
     background: -webkit-linear-gradient(to top,
         var(--sky-gradient-1) 10%,
         var(--sky-gradient-2) 20%,
