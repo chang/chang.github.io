@@ -5,15 +5,9 @@ function addTypingInterestText(interests) {
     strings: interests,
     typeSpeed: 70,
     backSpeed: 70,
-    backDelay: 3500,
+    backDelay: 2500,
     showCursor: true,
     loop: true,
-
-    onStringTyped: function(d, i) {
-      console.log(d);
-      console.log(i);
-
-    }
   });
 }
 
@@ -246,8 +240,11 @@ function fadeInAll() {
 document.addEventListener('DOMContentLoaded', function(event) {
   addTypingInterestText([
     'data science.',
-    'software engineering.',
-    'open source.',
+    'writing software.',
+    'playing viola.',
+    'calligraphy.',
+    'Discworld.',
+    'CAD.',
   ]);
 
   const tabSelectors = [
