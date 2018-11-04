@@ -241,10 +241,10 @@ document.addEventListener('DOMContentLoaded', function(event) {
   addTypingInterestText([
     'data science.',
     'writing software.',
-    'playing viola.',
+    'playing string instruments.',
     'calligraphy.',
+    'Computer Aided Design.',
     'Discworld.',
-    'CAD.',
   ]);
 
   const tabSelectors = [

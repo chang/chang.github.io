@@ -109,12 +109,11 @@ class NightSky {
       setTimeout(() => {
         anime({
             targets: "#moon",
-            duration: 2000,
+            duration: 2500,
             opacity: [0, 1],
             translateY: ["+80px", "-20px"],
             rotate: "-140deg",
             easing: "easeOutQuad",
-            duration: 1500,
           });
       }, 1000);
   }
