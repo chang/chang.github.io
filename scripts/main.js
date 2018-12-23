@@ -241,9 +241,8 @@ document.addEventListener('DOMContentLoaded', function(event) {
   addTypingInterestText([
     'data science.',
     'writing software.',
-    'playing string instruments.',
-    'calligraphy.',
     'Computer Aided Design.',
+    'calligraphy.',
     'Discworld.',
   ]);
 

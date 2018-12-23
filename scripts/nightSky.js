@@ -72,6 +72,7 @@ class NightSky {
       const endX = randomUniformPercent(0, 70);
       const startY = randomUniformPercent(-20, 10);  // start a bit out of frame so it's visible for longer
       const endY = randomUniformPercent(60, 100);
+      const r = randomUniform(0.25, 1);
 
       const color = this.opts.shootingStarColors[i % this.opts.shootingStarColors.length];
 
@@ -80,7 +81,7 @@ class NightSky {
           .attr("id", `shooting-star-${i}`)
           .attr("fill", color)
           .attr("opacity", 0)
-          .attr("r", randomUniform(0.5, 2))
+          .attr("r", r)
           .style("will-change", "transform, opacity")
 
       anime({
