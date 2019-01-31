@@ -1,16 +1,5 @@
 'use strict';
 
-function addTypingInterestText(interests) {
-  new Typed('#interests', {
-    strings: interests,
-    typeSpeed: 70,
-    backSpeed: 70,
-    backDelay: 2500,
-    showCursor: true,
-    loop: true,
-  });
-}
-
 
 /* Set up the content switching tabs. */
 class Tabs {
@@ -238,14 +227,6 @@ function fadeInAll() {
 }
 
 document.addEventListener('DOMContentLoaded', function(event) {
-  addTypingInterestText([
-    'data science.',
-    'writing software.',
-    'Computer Aided Design.',
-    'calligraphy.',
-    'Discworld.',
-  ]);
-
   const tabSelectors = [
     {tab: '#about-tab', content: '#about-content'},
     {tab: '#work-tab', content: '#work-content'},

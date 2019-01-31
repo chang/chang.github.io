@@ -12,11 +12,6 @@ body {
     color: white;
 }
 
-#interest-text {
-    color: white;
-    margin-top: 1em;
-}
-
 /* utility classes */
 .vertically-centered {
     display: flex;
