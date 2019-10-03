@@ -227,13 +227,6 @@ function fadeInAll() {
 }
 
 document.addEventListener('DOMContentLoaded', function(event) {
-  const tabSelectors = [
-    {tab: '#about-tab', content: '#about-content'},
-    {tab: '#work-tab', content: '#work-content'},
-    {tab: '#experience-tab', content: '#experience-content'},
-  ];
-  const tabs = new Tabs(tabSelectors);
-  tabs.render();
 
   const sky = new NightSky({
     numStars: 50,

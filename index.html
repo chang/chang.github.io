@@ -59,7 +59,9 @@
             <h1 class="title is-2 nowrap" id="heading">
               Hi, I'm Eric.
             </h1>
-
+            <h2 class="subtitle is-7">
+              Night sky built with D3.js.
+            </h2>
 
             <div class="links" id="links">
               <a class="link-item has-text-grey-lighter" target="_blank">
@@ -76,18 +78,25 @@
                 <span class="link-text">GitHub</span>
               </a>
 
-              <a class="link-item has-text-grey-lighter" href="mailto:me@ericchang.me" target="_blank">
-                <span class="icon">
-                  <i class="fas fa-envelope"></i>
-                </span>
-                <span class="link-text">Email</span>
-              </a>
-
               <a class="link-item has-text-grey-lighter" href="https://linkedin.com/in/ericcchang" target="_blank">
                 <span class="icon">
                   <i class="fab fa-linkedin"></i>
                 </span>
                 <span class="link-text">LinkedIn</span>
+              </a>
+
+              <a class="link-item has-text-grey-lighter" href="assets/EricChang_Resume.pdf" target="_blank">
+                <span class="icon">
+                  <i class="far fa-file-pdf"></i>
+                </span>
+                <span class="link-text">Resume</span>
+              </a>
+
+              <a class="link-item has-text-grey-lighter" href="mailto:me@ericchang.me" target="_blank">
+                <span class="icon">
+                  <i class="fas fa-envelope"></i>
+                </span>
+                <span class="link-text">Email</span>
               </a>
 
             </div>
@@ -96,157 +105,6 @@
       </div>
 
       <div class="hero-foot">
-        <nav class="tabs is-boxed">
-          <div class="container">
-            <ul>
-              <li id="about-tab" class="navigation-tab is-active">
-                <a class="hvr-fade">
-                  <span class="icon is-small"><i class="fas fa-user"></i></span>
-                  <span>About</span>
-                </a>
-              </li>
-              <li id="work-tab" class="navigation-tab">
-                <a class="hvr-fade">
-                  <span class="icon is-small"><i class="fas fa-code"></i></span>
-                  <span>Code</span>
-                </a>
-              </li>
-              <li id="experience-tab" class="navigation-tab">
-                <a class="hvr-fade">
-                  <span class="icon is-small"><i class="fas fa-briefcase"></i></span>
-                  <span>Experience</span>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </nav>
-      </div>
-
-      <p id="built-with-text" class="has-text-light-grey">Night sky built with D3.js</p>
-
-    </section>
-
-    <!-- TAB CONTENT -->
-    <section id="tab-content" class="section">
-
-      <!-- About -->
-      <div id="about-content">
-        <div class="container">
-          <div class="columns is-centered">
-            <div class="column is-8">
-
-              <div class="content">
-                <p class="is-size-6-mobile is-size-5-tablet">
-                  <span class="has-text-weight-semibold has-text-palette-2">Hi, I'm Eric.</span>
-                  I'm a recent graduate from Northwestern University, where I studied Industrial Engineering.
-                </p>
-
-                <p class="is-size-6-mobile is-size-5-tablet">
-                  <span class="has-text-weight-semibold has-text-palette-2">Currently,</span>
-                  I'm a data scientist at <a href="http://asana.com" class="asana" target="_blank">Asana</a>, working on data infrastructure.
-                </p>
-
-                <p class="is-size-6-mobile is-size-5-tablet">
-                  <span class="has-text-weight-semibold has-text-palette-2">I think free and open source software is the coolest thing.</span>
-                  I say this mainly as a consumer rather than a producer, although I've gotten lucky and have had the chance to contribute to a few projects as part of internships and work.
-                </p>
-
-                <p class="is-size-6-mobile is-size-5-tablet">
-                  <span class="has-text-weight-semibold has-text-palette-2">In my free time,</span>
-                  I like to play string instruments and do calligraphy.
-                  I'm a massive fan of Discworld: <a href="http://www.gnuterrypratchett.com/">GNU Terry Pratchett</a>.
-                </p>
-
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-
-      <!-- Work -->
-      <div id="work-content" class="hidden">
-        <div class="container">
-          <div class="columns is-centered">
-            <div class="column is-8">
-              <div class="content">
-                <p class="is-size-6-mobile is-size-5-tablet">
-                  Some of the code I've written and open source contributions I've made:
-                </p>
-                <ul>
-                  <li>
-                    <a href="http://scikit-learn.org/" target="_blank">
-                      scikit-learn:
-                    </a>
-                    <a href="http://scikit-learn.org/dev/modules/generated/sklearn.preprocessing.PowerTransformer" target="_blank">PowerTransformer</a>, a feature release in scikit-learn 0.20.
-                    Bonus:
-                    <a href="http://scikit-learn.org/dev/auto_examples/preprocessing/plot_map_data_to_normal">
-                      examples
-                    </a>
-                    in the scikit-learn manual.
-                  </li>
-                  <li>
-                    <a href="https://redash.io" target="_blank">
-                      Redash.io:
-                    </a>
-                    <a href="https://github.com/getredash/redash/pull/3288" target="_blank">highlighted query  execution</a>, a useful feature when iterating on subqueries.
-                  </li>
-                  <li>
-                    <a href="https://airflow.apache.org/" target="_blank">
-                      Apache Airflow:
-                    </a>
-                    various <a href="https://github.com/apache/incubator-airflow/pull/4001" target="_blank">bugfixes</a>,
-                    <a href="https://github.com/apache/incubator-airflow/pull/4002" target="_blank">enhancements</a>,
-                    and <a href="https://github.com/apache/incubator-airflow/pull/3999" target="_blank">bugfixes</a> as they
-                    crop up.
-                  </li>
-                  <li>
-                    <a href="https://github.com/chang/ggphysics" target="_blank">
-                      ggphysics:
-                    </a>
-                    using R to make fun little physics animations.
-                  </li>
-                  <li>
-                    <a href="https://github.com/chang/squirrelfinder" target="_blank">
-                      squirrelfinder:
-                    </a>
-                    a website to locate squirrels at Indiana University. This is a rough WIP for the <a href="https://www.instagram.com/squirrels_of_iu" target="_blank">Squirrels of IU</a>.
-                  </li>
-                  <li>
-                    <a href="https://github.com/chang/gifmake" target="_blank">
-                      gifmake:
-                    </a>
-                    a little command line utility for stitching images into GIFs. It's got at least 4 pip installs, but 2 of these were probably me.
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- Experience -->
-      <div id="experience-content" class="hidden">
-
-        <div class="container">
-          <!-- Cards -->
-          <div class="columns is-centered">
-            <!-- Experience intro -->
-            <div class="column is-8">
-              <div class="content">
-
-                <a id="pdf-button" class="button is-outlined is-danger hvr-fade" href="assets/EricChang_Resume.pdf" target="_blank">
-                  <span class="icon">
-                    <i class="far fa-file-pdf"></i>
-                  </span>
-                  <span>PDF</span>
-                </a>
-
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
 
     </section>
