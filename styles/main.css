@@ -13,7 +13,7 @@ body {
 }
 
 .subtitle {
-    color: #6e6e6e;
+    color: white;
     padding-top: 0.7em;
 }
 
@@ -105,9 +105,9 @@ body {
 
 
 #built-with-text {
-    font-size: 0.6em;
+    font-size: 0.7em;
     position: absolute;
-    top: 0;
+    bottom: 0.25em;
     right: 0.25em;
     color: white;
 }
