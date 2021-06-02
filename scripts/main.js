@@ -228,6 +228,20 @@ function fadeInAll() {
 
 document.addEventListener('DOMContentLoaded', function(event) {
 
+  new TypeIt("#heading", {
+    speed: 80,
+    waitUntilVisible: true,
+    startDelay: 1500,
+    afterComplete: function (step, instance) {
+      instance.destroy();
+    }
+  })
+    .type("Hi, ")
+    .pause(700)
+    .type("I'm Eric.", {speed: 120})
+    .pause(3000)
+    .go();
+
   const sky = new NightSky({
     numStars: 50,
     numShootingStars: 5,
