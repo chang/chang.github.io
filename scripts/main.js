@@ -243,8 +243,8 @@ document.addEventListener('DOMContentLoaded', function(event) {
     .go();
 
   const sky = new NightSky({
-    numStars: 50,
-    numShootingStars: 5,
+    numStars: 70,
+    numShootingStars: 8,
     shootingStarColors: ["white", "gold", "red", "skyblue", "orange"],
   });
 

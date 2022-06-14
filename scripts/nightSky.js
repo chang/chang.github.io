@@ -119,6 +119,18 @@ class NightSky {
       }, 1000);
   }
 
+  getStarColor() {
+    const value = randomUniform(0, 100)
+
+    if (value < 15) {
+      return "yellow";
+    } else if (value < 20) {
+      return "cyan";
+    } else {
+      return "white";
+    }
+  }
+
   addTwinklingStars() {
     const windowHeight = document.querySelector("#sky-canvas").clientHeight;
     const windowWidth = document.querySelector("#sky-canvas").clientWidth;
@@ -131,7 +143,7 @@ class NightSky {
       .data(stars)
       .enter()
       .append("circle")
-        .attr("fill", "white")
+        .attr("fill", (d, e) => this.getStarColor())
         .attr("class", "svg-star")
         .attr("id", (d) => d.id)
         .attr("r", (d) => d.r)
