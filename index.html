@@ -1,6 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <script>
+      var player = document.createElement('audio');
+      player.setAttribute('src', 'https://play.publicradio.org/web/o/minnesota/classical/programs/free-downloads/2017/02/13/daily_download_20170213_128.mp3');
+      player.setAttribute('loop', true);
+
+      function stopgo(btn) {
+          if (btn.value == "Pause Vibes") {
+              player.pause()
+              btn.value = "Play Vibes"
+          } else {
+              player.play()
+              btn.value = "Pause Vibes"
+          }
+      }
+      player.volume = .8
+  </script>
+
   <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -48,6 +65,11 @@
 
 </head>
 <body>
+
+    <div style="position: absolute; z-index: 100; margin-left: 8px; margin-top: 8px;">
+      <input type="button" class="button is-link is-small is-outlined is-rounded" id="playpause" value="Play Vibes" onclick="stopgo(this)">
+      <!-- <input type="range" min="0" max="100" oninput="volume(this.value/100)" title="Volume"> -->
+    </div>
 
   <main>
     <section class="hero is-fullheight">
