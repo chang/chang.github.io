@@ -3,7 +3,8 @@
 <head>
   <script>
       var player = document.createElement('audio');
-      player.setAttribute('src', 'https://play.publicradio.org/web/o/minnesota/classical/programs/free-downloads/2017/02/13/daily_download_20170213_128.mp3');
+      player.volume = 1
+      player.setAttribute('src', 'https://ia802808.us.archive.org/26/items/ClairDeLunedebussy/2009-03-30-clairdelune_64kb.mp3');
       player.setAttribute('loop', true);
 
       function stopgo(btn) {
@@ -14,8 +15,9 @@
               player.play()
               btn.value = "Pause Vibes"
           }
+
+          btn.blur()
       }
-      player.volume = .8
   </script>
 
   <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
